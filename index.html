@@ -91,145 +91,309 @@
       </div>
     </section>
 
-    <section class="train-build" id="journey" data-build aria-labelledby="journey-title">
-      <div class="train-build__intro section-shell">
-        <p class="eyebrow" data-de="Der Karriere-Express" data-en="The career express">Der Karriere-Express</p>
-        <h2 id="journey-title" data-de="Scrollen Sie - der Zug rollt von hinten nach vorne." data-en="Scroll - the train rolls from the rear to the front.">Scrollen Sie - der Zug rollt von hinten nach vorne.</h2>
-        <p class="train-build__lede" data-de="Sieben Wagen, sieben Stationen einer unternehmerischen Reise. Von der ersten Pub-Geschaeftsleitung bis zur Lokomotive - dem heutigen Chairman, Founder und Angel Investor. Der Speisewagen erinnert an acht Jahre SBB und das Coffee-Erbe von Segafredo bis zur Black Coffee Group." data-en="Seven cars, seven stations of an entrepreneurial journey. From the first pub managing director seat to the locomotive itself - today's Chairman, Founder and Angel Investor. The Speisewagen carries the heritage of eight years at SBB and the coffee story from Segafredo to Black Coffee Group.">Sieben Wagen, sieben Stationen einer unternehmerischen Reise. Von der ersten Pub-Geschaeftsleitung bis zur Lokomotive - dem heutigen Chairman, Founder und Angel Investor. Der Speisewagen erinnert an acht Jahre SBB und das Coffee-Erbe von Segafredo bis zur Black Coffee Group.</p>
+    <section class="brew-build" id="journey" data-build aria-labelledby="journey-title">
+      <div class="brew-build__intro section-shell">
+        <p class="eyebrow" data-de="Der Espresso einer Karriere" data-en="The espresso of a career">Der Espresso einer Karriere</p>
+        <h2 id="journey-title" data-de="Scrollen Sie - die Tasse wird Schicht fuer Schicht gebrueht." data-en="Scroll - the cup is brewed layer by layer.">Scrollen Sie - die Tasse wird Schicht fuer Schicht gebrueht.</h2>
+        <p class="brew-build__lede" data-de="Sieben Schichten, sieben Stationen einer unternehmerischen Reise. Vom ersten Tropfen Operator-DNA in der Pub-Welt bis zum goldenen «Servito»-Stempel des heutigen Chairman, Co-Founder und Angel Investor - eine Tasse, die Segafredo und Black Coffee Group ebenso erzaehlt wie acht Jahre SBB Speisewagen." data-en="Seven layers, seven stations of an entrepreneurial journey. From the first operator-DNA drop in the pub world to today's golden «Servito» stamp as Chairman, Co-Founder and Angel Investor - one cup that tells the Segafredo and Black Coffee Group story as much as eight years of SBB dining cars.">Sieben Schichten, sieben Stationen einer unternehmerischen Reise. Vom ersten Tropfen Operator-DNA in der Pub-Welt bis zum goldenen «Servito»-Stempel des heutigen Chairman, Co-Founder und Angel Investor - eine Tasse, die Segafredo und Black Coffee Group ebenso erzaehlt wie acht Jahre SBB Speisewagen.</p>
       </div>
 
-      <div class="train-build__layout section-shell">
-        <div class="train-build__stage" aria-hidden="true">
-          <div class="train-build__sky"></div>
-          <div class="train-build__mountains">
-            <svg viewBox="0 0 1200 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0,220 L0,160 L120,90 L210,150 L320,60 L450,140 L580,40 L720,130 L850,80 L990,150 L1120,90 L1200,140 L1200,220 Z" fill="#a4b3c4" opacity="0.55"/>
-              <path d="M0,220 L0,180 L160,130 L260,170 L380,110 L520,160 L640,90 L780,160 L900,120 L1040,170 L1170,130 L1200,160 L1200,220 Z" fill="#7e90a8" opacity="0.6"/>
+      <div class="brew-build__layout section-shell">
+        <div class="brew-build__stage" aria-hidden="true">
+          <div class="brew-build__counter"></div>
+          <div class="brew-build__steam" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <div class="brew-build__cup" data-cup>
+            <svg class="cup-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+              <defs>
+                <!-- Cup interior clip: opening ellipse + tapered body, used to mask all liquid -->
+                <clipPath id="cupInsideClip" clipPathUnits="userSpaceOnUse">
+                  <path d="M96,118 Q96,98 200,98 Q304,98 304,118 Q298,254 268,288 Q236,312 200,312 Q164,312 132,288 Q102,254 96,118 Z"/>
+                </clipPath>
+
+                <!-- Porcelain body shading (cool side-light from upper left) -->
+                <linearGradient id="porcelainBody" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset=".18" stop-color="#fbfcfe"/>
+                  <stop offset=".55" stop-color="#eef1f5"/>
+                  <stop offset=".82" stop-color="#dde2ea"/>
+                  <stop offset="1" stop-color="#cbd2dc"/>
+                </linearGradient>
+
+                <!-- Inner cup wall (darker because we look down into it) -->
+                <radialGradient id="innerWall" cx=".5" cy=".0" r=".75" fx=".5" fy=".0">
+                  <stop offset="0" stop-color="#7d8a9c"/>
+                  <stop offset=".55" stop-color="#3a4658"/>
+                  <stop offset="1" stop-color="#1d2533"/>
+                </radialGradient>
+
+                <!-- Saucer top + side -->
+                <radialGradient id="saucerTop" cx=".5" cy=".4" r=".7">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset=".55" stop-color="#f1f3f7"/>
+                  <stop offset="1" stop-color="#cfd5df"/>
+                </radialGradient>
+
+                <linearGradient id="saucerSide" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#dee3ec"/>
+                  <stop offset="1" stop-color="#a9b3c2"/>
+                </linearGradient>
+
+                <!-- Espresso (very dark, slight warm core) -->
+                <radialGradient id="espressoBody" cx=".5" cy=".55" r=".7">
+                  <stop offset="0" stop-color="#3b1c08"/>
+                  <stop offset=".55" stop-color="#23110a"/>
+                  <stop offset="1" stop-color="#0d0703"/>
+                </radialGradient>
+
+                <!-- Crema: signature golden hazel -->
+                <radialGradient id="cremaBody" cx=".5" cy=".5" r=".68">
+                  <stop offset="0" stop-color="#e8c178"/>
+                  <stop offset=".5" stop-color="#c79a4a"/>
+                  <stop offset=".88" stop-color="#8a6024"/>
+                  <stop offset="1" stop-color="#5d3f15"/>
+                </radialGradient>
+
+                <!-- Milk: warm cream -->
+                <radialGradient id="milkBody" cx=".42" cy=".42" r=".7">
+                  <stop offset="0" stop-color="#fffbf3"/>
+                  <stop offset=".58" stop-color="#f5e9d3"/>
+                  <stop offset="1" stop-color="#d8c39c"/>
+                </radialGradient>
+
+                <!-- Bean grain -->
+                <radialGradient id="beanBody" cx=".5" cy=".4" r=".65">
+                  <stop offset="0" stop-color="#5e2f10"/>
+                  <stop offset=".55" stop-color="#3a1908"/>
+                  <stop offset="1" stop-color="#1d0c03"/>
+                </radialGradient>
+
+                <!-- Soft drop shadow under the cup -->
+                <filter id="cupShadow" x="-20%" y="-10%" width="140%" height="140%">
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+                  <feOffset dx="0" dy="6" result="off"/>
+                  <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+                  <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+
+                <!-- Crema marbling pattern (subtle swirl) -->
+                <pattern id="cremaSwirl" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                  <circle cx="20" cy="20" r="22" fill="rgba(255, 220, 150, 0.18)"/>
+                  <circle cx="60" cy="55" r="18" fill="rgba(70, 40, 12, 0.18)"/>
+                </pattern>
+              </defs>
+
+              <!-- Cast shadow under the saucer -->
+              <ellipse cx="200" cy="332" rx="172" ry="10" fill="rgba(7, 35, 102, 0.22)" filter="url(#cupShadow)"/>
+
+              <!-- Saucer (3D: side ring + top plate + center well) -->
+              <g class="cup-saucer">
+                <!-- Side ring (visible underside) -->
+                <ellipse cx="200" cy="328" rx="158" ry="13" fill="url(#saucerSide)"/>
+                <!-- Top plate -->
+                <ellipse cx="200" cy="320" rx="158" ry="20" fill="url(#saucerTop)"/>
+                <!-- Gold rim line on saucer edge -->
+                <ellipse cx="200" cy="320" rx="158" ry="20" fill="none" stroke="#C49A2A" stroke-width="0.8" opacity="0.75"/>
+                <!-- Center well (the hollow where the cup foot sits) -->
+                <ellipse cx="200" cy="316" rx="76" ry="9" fill="#dde2ea"/>
+                <ellipse cx="200" cy="316" rx="76" ry="9" fill="none" stroke="rgba(7, 35, 102, 0.15)" stroke-width="1"/>
+                <!-- Subtle highlight on saucer top -->
+                <ellipse cx="170" cy="312" rx="56" ry="3" fill="rgba(255, 255, 255, 0.8)"/>
+              </g>
+
+              <!-- Handle (drawn behind the cup body so the body covers the join) -->
+              <g class="cup-handle">
+                <!-- Outer handle silhouette (shadow side) -->
+                <path d="M300,154 C354,150 360,238 304,260"
+                      fill="none" stroke="#a0aab9" stroke-width="20" stroke-linecap="round"/>
+                <!-- Handle body highlight -->
+                <path d="M300,154 C354,150 360,238 304,260"
+                      fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" opacity="0.75"/>
+                <!-- Inner core -->
+                <path d="M302,168 C338,170 342,232 304,248"
+                      fill="none" stroke="#cdd5e1" stroke-width="6" stroke-linecap="round"/>
+                <!-- Gold accent loop -->
+                <path d="M306,168 C342,170 348,232 308,248"
+                      fill="none" stroke="#C49A2A" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
+              </g>
+
+              <!-- Cup body (ellipse-topped, tapered, shaded) -->
+              <g class="cup-body" filter="url(#cupShadow)">
+                <!-- Outer porcelain shape -->
+                <path d="M96,118 Q96,98 200,98 Q304,98 304,118 Q298,254 268,288 Q236,312 200,312 Q164,312 132,288 Q102,254 96,118 Z"
+                      fill="url(#porcelainBody)"/>
+                <!-- Side shadow (right) -->
+                <path d="M260,124 Q272,250 244,294 Q230,304 220,308 L220,124 Z"
+                      fill="rgba(7, 35, 102, 0.08)"/>
+                <!-- Vertical highlight (left) -->
+                <path d="M120,128 Q116,200 132,260 L142,260 Q126,200 132,130 Z"
+                      fill="rgba(255, 255, 255, 0.55)"/>
+                <!-- Bottom curve dark accent -->
+                <path d="M150,304 Q200,316 250,304 Q200,322 150,304 Z"
+                      fill="rgba(7, 35, 102, 0.18)"/>
+                <!-- Subtle SC monogram on the side of the cup -->
+                <text x="200" y="240" text-anchor="middle"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="22" font-weight="800"
+                      fill="rgba(7, 35, 102, 0.10)" letter-spacing="6">SC</text>
+              </g>
+
+              <!-- Inner cup wall ellipse (top of cup) - dark interior visible above liquid -->
+              <ellipse cx="200" cy="118" rx="104" ry="22" fill="url(#innerWall)"/>
+
+              <!-- Brew layers (clipped to cup interior).
+                   Liquid zone is roughly y=120 (rim level, surface) to y=300 (bottom of cup).
+                   Each layer rises from below; surfaces are elliptical (3D meniscus). -->
+              <g clip-path="url(#cupInsideClip)">
+                <!-- 1. Espresso - dark base liquid. Top surface is a curved ellipse. -->
+                <g class="brew-layer brew-layer--espresso">
+                  <!-- Body fill (deep brown-black) -->
+                  <rect x="80" y="120" width="240" height="180" fill="url(#espressoBody)"/>
+                  <!-- Surface highlight ellipse -->
+                  <ellipse cx="200" cy="120" rx="104" ry="14" fill="#2a1407"/>
+                  <ellipse cx="200" cy="118" rx="104" ry="14"
+                           fill="none" stroke="rgba(255, 220, 180, 0.18)" stroke-width="0.8"/>
+                </g>
+
+                <!-- 2. Crema - golden hazel layer covering the surface and pushing the meniscus up.
+                     This is a thick visible band, mostly sitting at the rim. -->
+                <g class="brew-layer brew-layer--crema">
+                  <!-- Surface ellipse (top-down view of the crema disc) -->
+                  <ellipse cx="200" cy="120" rx="104" ry="14" fill="url(#cremaBody)"/>
+                  <!-- Subtle inner ring darken (where crema meets the wall) -->
+                  <ellipse cx="200" cy="120" rx="100" ry="13"
+                           fill="none" stroke="rgba(70, 40, 12, 0.32)" stroke-width="0.8"/>
+                  <!-- Light highlight on the front rim of the crema -->
+                  <path d="M118,124 Q200,138 282,124" fill="none"
+                        stroke="rgba(255, 235, 190, 0.5)" stroke-width="1.2"/>
+                  <!-- Marbling swirl tint -->
+                  <ellipse cx="200" cy="120" rx="104" ry="14" fill="url(#cremaSwirl)" opacity="0.22"/>
+                </g>
+
+                <!-- 3. Milk foam - cream foam disc on top of the crema, slightly raised meniscus. -->
+                <g class="brew-layer brew-layer--milk">
+                  <!-- Foam disc -->
+                  <ellipse cx="200" cy="118" rx="104" ry="14" fill="url(#milkBody)"/>
+                  <!-- Foam edge highlight -->
+                  <ellipse cx="200" cy="115" rx="102" ry="13"
+                           fill="none" stroke="rgba(255, 255, 255, 0.85)" stroke-width="0.8"/>
+                  <!-- Foam bubble texture -->
+                  <circle cx="160" cy="118" r="2" fill="rgba(255, 255, 255, 0.85)"/>
+                  <circle cx="232" cy="121" r="1.6" fill="rgba(255, 255, 255, 0.7)"/>
+                  <circle cx="186" cy="124" r="1.4" fill="rgba(255, 255, 255, 0.65)"/>
+                  <circle cx="248" cy="116" r="1.2" fill="rgba(255, 255, 255, 0.6)"/>
+                </g>
+
+                <!-- 4. Latte-art SC shield drawn on the foam surface (sits on top of milk).
+                     Etched-into-foam look: dark espresso strokes on cream background. -->
+                <g class="brew-layer brew-layer--art">
+                  <g transform="translate(200 118)">
+                    <!-- Outer shield petal: dark-on-cream like classic latte art -->
+                    <path d="M-32,-7 C-32,-15 -16,-19 0,-19 C16,-19 32,-15 32,-7 C30,4 18,12 0,18 C-18,12 -30,4 -32,-7 Z"
+                          fill="rgba(180, 130, 70, 0.85)"
+                          stroke="rgba(70, 40, 12, 0.92)" stroke-width="1" stroke-linejoin="round"/>
+                    <!-- Two inner rosetta leaves -->
+                    <path d="M-12,-2 C-14,4 -8,8 0,10 C8,8 14,4 12,-2 C8,-7 -8,-7 -12,-2 Z"
+                          fill="none" stroke="rgba(252, 240, 215, 0.95)" stroke-width="1"/>
+                    <!-- SC monogram, dark coffee on the petal -->
+                    <text x="0" y="2" text-anchor="middle"
+                          font-family="Open Sans, Helvetica, sans-serif"
+                          font-size="9" font-weight="800"
+                          fill="rgba(54, 30, 8, 0.95)" letter-spacing="2">SC</text>
+                  </g>
+                </g>
+
+                <!-- 5. BCG coffee beans floating on the foam -->
+                <g class="brew-layer brew-layer--beans">
+                  <g class="bean" transform="translate(146 110) rotate(-26)">
+                    <ellipse cx="0" cy="2" rx="11" ry="2.4" fill="rgba(0, 0, 0, 0.22)"/>
+                    <ellipse cx="0" cy="0" rx="11" ry="6.5" fill="url(#beanBody)"/>
+                    <path d="M-8,-1 q4,-2 8,0" fill="none" stroke="rgba(0, 0, 0, 0.75)" stroke-width="1"/>
+                    <ellipse cx="-3" cy="-2" rx="2.4" ry="1.6" fill="rgba(255, 220, 170, 0.4)"/>
+                  </g>
+                  <g class="bean" transform="translate(254 108) rotate(22)">
+                    <ellipse cx="0" cy="2" rx="11" ry="2.4" fill="rgba(0, 0, 0, 0.22)"/>
+                    <ellipse cx="0" cy="0" rx="11" ry="6.5" fill="url(#beanBody)"/>
+                    <path d="M-8,-1 q4,-2 8,0" fill="none" stroke="rgba(0, 0, 0, 0.75)" stroke-width="1"/>
+                    <ellipse cx="-3" cy="-2" rx="2.4" ry="1.6" fill="rgba(255, 220, 170, 0.4)"/>
+                  </g>
+                  <g class="bean" transform="translate(200 130) rotate(-8)">
+                    <ellipse cx="0" cy="2" rx="11" ry="2.4" fill="rgba(0, 0, 0, 0.22)"/>
+                    <ellipse cx="0" cy="0" rx="11" ry="6.5" fill="url(#beanBody)"/>
+                    <path d="M-8,-1 q4,-2 8,0" fill="none" stroke="rgba(0, 0, 0, 0.75)" stroke-width="1"/>
+                    <ellipse cx="-3" cy="-2" rx="2.4" ry="1.6" fill="rgba(255, 220, 170, 0.4)"/>
+                  </g>
+                </g>
+              </g>
+
+              <!-- Gold rim (drawn last so it's on top of inner wall and any liquid spike) -->
+              <ellipse cx="200" cy="118" rx="104" ry="22"
+                       fill="none" stroke="#C49A2A" stroke-width="2.4"/>
+              <ellipse cx="200" cy="118" rx="104" ry="22"
+                       fill="none" stroke="rgba(255, 255, 255, 0.55)" stroke-width="0.8"/>
+
+              <!-- Specular highlight on porcelain -->
+              <path d="M118,140 Q108,210 130,272"
+                    fill="none" stroke="rgba(255, 255, 255, 0.55)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M280,160 Q286,220 270,260"
+                    fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="train-build__terrain"></div>
-          <div class="train-build__sleepers"></div>
-          <div class="train-build__rails"></div>
 
-          <div class="train">
-            <div class="train-track">
-              <div class="wagon" data-wagon="caboose">
-                <span class="wagon-num">01</span>
-                <div class="wagon-window wagon-window--lg"></div>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">Pub</span>
-              </div>
-              <div class="coupler" data-coupler="1"></div>
+          <div class="brew-build__stamp" data-de="Servito - Excellence Tier" data-en="Servito - Excellence Tier">Servito - Excellence Tier</div>
 
-              <div class="wagon" data-wagon="speisewagen">
-                <span class="wagon-num">02</span>
-                <div class="wagon-window wagon-window--split"><span></span><span></span><span></span><span></span></div>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">Speisewagen</span>
-              </div>
-              <div class="coupler" data-coupler="2"></div>
-
-              <div class="wagon" data-wagon="cargo">
-                <span class="wagon-num">03</span>
-                <div class="wagon-window wagon-window--split"><span></span><span></span><span></span></div>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">Einkauf</span>
-              </div>
-              <div class="coupler" data-coupler="3"></div>
-
-              <div class="wagon" data-wagon="executive">
-                <span class="wagon-num">04</span>
-                <div class="wagon-window wagon-window--lg"></div>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">Segafredo</span>
-              </div>
-              <div class="coupler" data-coupler="4"></div>
-
-              <div class="wagon" data-wagon="boutique">
-                <span class="wagon-num">05</span>
-                <div class="wagon-window wagon-window--lg"></div>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">Boutique M&amp;A</span>
-              </div>
-              <div class="coupler" data-coupler="5"></div>
-
-              <div class="wagon" data-wagon="bcg">
-                <span class="wagon-num">06</span>
-                <div class="wagon-window wagon-window--split"><span></span><span></span></div>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">BCG</span>
-              </div>
-              <div class="coupler" data-coupler="6"></div>
-
-              <div class="wagon" data-wagon="locomotive">
-                <span class="wagon-num">07</span>
-                <span class="locomotive-stack" aria-hidden="true"></span>
-                <div class="locomotive-steam" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span>
-                </div>
-                <div class="wagon-window wagon-window--lg"></div>
-                <span class="sbb-clock" aria-hidden="true"></span>
-                <span class="sbb-clock-dot" aria-hidden="true"></span>
-                <div class="locomotive-nose"></div>
-                <span class="locomotive-light" aria-hidden="true"></span>
-                <div class="wagon-stripe"></div>
-                <span class="wagon-label">Lok</span>
-              </div>
-            </div>
+          <div class="brew-build__signal" aria-hidden="true">
+            <span data-de="Bar Spielmann - Vaduz / Zuerich" data-en="Bar Spielmann - Vaduz / Zurich">Bar Spielmann - Vaduz / Zuerich</span>
           </div>
 
-          <div class="train-build__stamp" data-de="Boarded - Erste Klasse" data-en="Boarded - First Class">Boarded - Erste Klasse</div>
-
-          <div class="train-build__signal" aria-hidden="true">
-            <span data-de="Gleis Karriere - SBB Style" data-en="Track Career - SBB Style">Gleis Karriere - SBB Style</span>
-          </div>
-
-          <div class="train-build__progress" aria-hidden="true">
-            <div class="train-build__progress-fill"></div>
+          <div class="brew-build__progress" aria-hidden="true">
+            <div class="brew-build__progress-fill"></div>
           </div>
         </div>
 
-        <ol class="train-build__chapters" aria-label="Karrierestationen">
-          <li class="train-chapter" data-build-step="0" data-reveal>
-            <span class="train-chapter__index" data-de="01 Pub-Wagen" data-en="01 Pub car">01 Pub-Wagen</span>
-            <h3 data-de="Operator-DNA: Markteinfuehrung Irish Pub Schweiz." data-en="Operator DNA: launching the Irish Pub in Switzerland.">Operator-DNA: Markteinfuehrung Irish Pub Schweiz.<span class="chapter-meta" data-de="1997-2010 - Managing Director, The Guinness Irish Pub Concept" data-en="1997-2010 - Managing Director, The Guinness Irish Pub Concept">1997-2010 - Managing Director, The Guinness Irish Pub Concept</span></h3>
-            <p data-de="Markteinfuehrung der Irish-Pub-Marke im CH-Markt, Aufbau von vier Betriebsgesellschaften in Fribourg, Locarno und Basel inklusive Services. 13 Jahre Operator- und Strategie-Erfahrung als Mitglied der Geschaeftsleitung und Board Member." data-en="Brand strategy and Swiss market launch of the Irish Pub concept, building four operating companies in Fribourg, Locarno and Basel including services. 13 years of operator and strategy experience as Managing Director and Board Member.">Markteinfuehrung der Irish-Pub-Marke im CH-Markt, Aufbau von vier Betriebsgesellschaften in Fribourg, Locarno und Basel inklusive Services. 13 Jahre Operator- und Strategie-Erfahrung als Mitglied der Geschaeftsleitung und Board Member.</p>
+        <ol class="brew-build__chapters" aria-label="Karrierestationen">
+          <li class="brew-chapter" data-build-step="0" data-reveal>
+            <span class="brew-chapter__index" data-de="01 Tasse - Operator-DNA" data-en="01 Cup - operator DNA">01 Tasse - Operator-DNA</span>
+            <h3 data-de="Markteinfuehrung Irish Pub Schweiz." data-en="Launching the Irish Pub in Switzerland.">Markteinfuehrung Irish Pub Schweiz.<span class="chapter-meta" data-de="1997-2010 - Managing Director, The Guinness Irish Pub Concept" data-en="1997-2010 - Managing Director, The Guinness Irish Pub Concept">1997-2010 - Managing Director, The Guinness Irish Pub Concept</span></h3>
+            <p data-de="Markteinfuehrung der Irish-Pub-Marke im CH-Markt, Aufbau von vier Betriebsgesellschaften in Fribourg, Locarno und Basel inklusive Services. 13 Jahre Operator- und Strategie-Erfahrung als Mitglied der Geschaeftsleitung und Board Member - die leere Tasse, die spaeter zu fuellen war." data-en="Brand strategy and Swiss launch of the Irish Pub concept, building four operating companies in Fribourg, Locarno and Basel including services. 13 years of operator and strategy experience as Managing Director and Board Member - the empty cup that everything else would fill.">Markteinfuehrung der Irish-Pub-Marke im CH-Markt, Aufbau von vier Betriebsgesellschaften in Fribourg, Locarno und Basel inklusive Services. 13 Jahre Operator- und Strategie-Erfahrung als Mitglied der Geschaeftsleitung und Board Member - die leere Tasse, die spaeter zu fuellen war.</p>
           </li>
 
-          <li class="train-chapter" data-build-step="1" data-reveal>
-            <span class="train-chapter__index" data-de="02 Speisewagen" data-en="02 Speisewagen">02 Speisewagen</span>
-            <h3 data-de="SBB Speisewagen: Turnaround und 700 Mitarbeiter." data-en="SBB Speisewagen: turnaround and 700 employees.">SBB Speisewagen: Turnaround und 700 Mitarbeiter.<span class="chapter-meta" data-de="2005-2010 - COO Speisewagen / Real Estate / Mitglied der GL, SBB" data-en="2005-2010 - COO Dining Cars / Real Estate / Executive Board, SBB">2005-2010 - COO Speisewagen / Real Estate / Mitglied der GL, SBB</span></h3>
-            <p data-de="Restrukturierung und Optimierung des Betriebsergebnisses mit Umsatzsteigerung von +8.5%. Einfuehrung neuer Fuehrungsgrundsaetze, Aufbau eines ISO-Qualitaetssystems und Fuehrung von 700 Mitarbeitenden auf dem Schienennetz - vom Bordrestaurant bis zur Real-Estate-Verantwortung." data-en="Restructured the dining-car business with +8.5% revenue growth and a clean turnaround. Rolled out new leadership principles, an ISO quality system and led 700 employees across the rail network - from on-board restaurants to real estate responsibility.">Restrukturierung und Optimierung des Betriebsergebnisses mit Umsatzsteigerung von +8.5%. Einfuehrung neuer Fuehrungsgrundsaetze, Aufbau eines ISO-Qualitaetssystems und Fuehrung von 700 Mitarbeitenden auf dem Schienennetz - vom Bordrestaurant bis zur Real-Estate-Verantwortung.</p>
+          <li class="brew-chapter" data-build-step="1" data-reveal>
+            <span class="brew-chapter__index" data-de="02 Espresso-Shot" data-en="02 Espresso shot">02 Espresso-Shot</span>
+            <h3 data-de="SBB Speisewagen: Turnaround und 700 Mitarbeitende." data-en="SBB Speisewagen: turnaround and 700 employees.">SBB Speisewagen: Turnaround und 700 Mitarbeitende.<span class="chapter-meta" data-de="2005-2010 - COO Speisewagen / Real Estate / Mitglied der GL, SBB" data-en="2005-2010 - COO Dining Cars / Real Estate / Executive Board, SBB">2005-2010 - COO Speisewagen / Real Estate / Mitglied der GL, SBB</span></h3>
+            <p data-de="Restrukturierung und Optimierung des Betriebsergebnisses mit Umsatzsteigerung von +8.5%. Einfuehrung neuer Fuehrungsgrundsaetze, Aufbau eines ISO-Qualitaetssystems und Fuehrung von 700 Mitarbeitenden vom Bordrestaurant bis zur Real-Estate-Verantwortung. Der erste konzentrierte Schuss in die Tasse." data-en="Restructured the dining-car business with +8.5% revenue growth and a clean turnaround. Rolled out new leadership principles, an ISO quality system and led 700 employees from on-board restaurants to real estate. The first concentrated shot into the cup.">Restrukturierung und Optimierung des Betriebsergebnisses mit Umsatzsteigerung von +8.5%. Einfuehrung neuer Fuehrungsgrundsaetze, Aufbau eines ISO-Qualitaetssystems und Fuehrung von 700 Mitarbeitenden vom Bordrestaurant bis zur Real-Estate-Verantwortung. Der erste konzentrierte Schuss in die Tasse.</p>
           </li>
 
-          <li class="train-chapter" data-build-step="2" data-reveal>
-            <span class="train-chapter__index" data-de="03 Strategischer Einkauf" data-en="03 Strategic procurement">03 Strategischer Einkauf</span>
+          <li class="brew-chapter" data-build-step="2" data-reveal>
+            <span class="brew-chapter__index" data-de="03 Crema - Strategischer Einkauf" data-en="03 Crema - strategic procurement">03 Crema - Strategischer Einkauf</span>
             <h3 data-de="35 Neueroeffnungen und Konzern-Rahmenvertraege." data-en="35 new locations and group-wide framework deals.">35 Neueroeffnungen und Konzern-Rahmenvertraege.<span class="chapter-meta" data-de="2010-2013 - COO Station / Leiter Strategischer Einkauf / Mitglied der GL, SBB" data-en="2010-2013 - COO Station / Head of Strategic Procurement / Executive Board, SBB">2010-2013 - COO Station / Leiter Strategischer Einkauf / Mitglied der GL, SBB</span></h3>
-            <p data-de="Markteinfuehrung «Segafredo» im CH-Markt mit 35 Neueroeffnungen. Hauptverantwortung im Strategischen Einkauf und Product Development - Optimierung der Beschaffung in der Schweiz, Frankreich und Italien. Erfolgreicher Abschluss von Rahmen- und Franchise-Vertraegen zwischen zwei Konzernen." data-en="Brand strategy and Swiss launch of «Segafredo» including 35 new openings. Owned strategic procurement and product development - optimised sourcing across Switzerland, France and Italy. Closed framework and franchise agreements between two corporate groups.">Markteinfuehrung «Segafredo» im CH-Markt mit 35 Neueroeffnungen. Hauptverantwortung im Strategischen Einkauf und Product Development - Optimierung der Beschaffung in der Schweiz, Frankreich und Italien. Erfolgreicher Abschluss von Rahmen- und Franchise-Vertraegen zwischen zwei Konzernen.</p>
+            <p data-de="Markteinfuehrung «Segafredo» im CH-Markt mit 35 Neueroeffnungen. Hauptverantwortung im Strategischen Einkauf und Product Development - Optimierung der Beschaffung in der Schweiz, Frankreich und Italien. Erfolgreicher Abschluss von Rahmen- und Franchise-Vertraegen zwischen zwei Konzernen. Goldene Crema oben drauf." data-en="Brand strategy and Swiss launch of «Segafredo» including 35 new openings. Owned strategic procurement and product development - optimised sourcing across Switzerland, France and Italy. Closed framework and franchise agreements between two corporate groups. The golden crema on top.">Markteinfuehrung «Segafredo» im CH-Markt mit 35 Neueroeffnungen. Hauptverantwortung im Strategischen Einkauf und Product Development - Optimierung der Beschaffung in der Schweiz, Frankreich und Italien. Erfolgreicher Abschluss von Rahmen- und Franchise-Vertraegen zwischen zwei Konzernen. Goldene Crema oben drauf.</p>
           </li>
 
-          <li class="train-chapter" data-build-step="3" data-reveal>
-            <span class="train-chapter__index" data-de="04 Segafredo" data-en="04 Segafredo">04 Segafredo</span>
+          <li class="brew-chapter" data-build-step="3" data-reveal>
+            <span class="brew-chapter__index" data-de="04 Milchschaum - Segafredo" data-en="04 Milk - Segafredo">04 Milchschaum - Segafredo</span>
             <h3 data-de="CEO Schweiz - Marke in HOREGA und Verkehrsgastronomie." data-en="CEO Switzerland - brand expansion in HOREGA and transport gastronomy.">CEO Schweiz - Marke in HOREGA und Verkehrsgastronomie.<span class="chapter-meta" data-de="2013-2014 - CEO Schweiz, Segafredo Zanetti" data-en="2013-2014 - CEO Switzerland, Segafredo Zanetti">2013-2014 - CEO Schweiz, Segafredo Zanetti</span></h3>
-            <p data-de="Strategieumsetzung und Geschaeftsplan-Entwicklung fuer Segafredo Zanetti Espresso Worldwide. Expansion der Marke in der Verkehrsgastronomie / HOREGA und Aufbau einer staerkeren Fuehrungsbasis fuer «Segafredo» im CH-Markt - parallel zur Leitung von Spezialprojekten im Konzern." data-en="Strategy execution and business plan development for Segafredo Zanetti Espresso Worldwide. Brand expansion in transport gastronomy / HOREGA and a stronger Swiss leadership platform for «Segafredo» - alongside leading group-wide special projects.">Strategieumsetzung und Geschaeftsplan-Entwicklung fuer Segafredo Zanetti Espresso Worldwide. Expansion der Marke in der Verkehrsgastronomie / HOREGA und Aufbau einer staerkeren Fuehrungsbasis fuer «Segafredo» im CH-Markt - parallel zur Leitung von Spezialprojekten im Konzern.</p>
+            <p data-de="Strategieumsetzung und Geschaeftsplan-Entwicklung fuer Segafredo Zanetti Espresso Worldwide. Expansion der Marke in der Verkehrsgastronomie / HOREGA und Aufbau einer staerkeren Fuehrungsbasis fuer «Segafredo» im CH-Markt - parallel zur Leitung von Spezialprojekten im Konzern. Cremiger Milchschaum, der das Bild glaettet." data-en="Strategy execution and business plan development for Segafredo Zanetti Espresso Worldwide. Brand expansion in transport gastronomy / HOREGA and a stronger Swiss leadership platform for «Segafredo» - alongside leading group-wide special projects. The creamy milk that smooths the picture.">Strategieumsetzung und Geschaeftsplan-Entwicklung fuer Segafredo Zanetti Espresso Worldwide. Expansion der Marke in der Verkehrsgastronomie / HOREGA und Aufbau einer staerkeren Fuehrungsbasis fuer «Segafredo» im CH-Markt - parallel zur Leitung von Spezialprojekten im Konzern. Cremiger Milchschaum, der das Bild glaettet.</p>
           </li>
 
-          <li class="train-chapter" data-build-step="4" data-reveal>
-            <span class="train-chapter__index" data-de="05 Spielmann Consulting AG" data-en="05 Spielmann Consulting AG">05 Spielmann Consulting AG</span>
+          <li class="brew-chapter" data-build-step="4" data-reveal>
+            <span class="brew-chapter__index" data-de="05 Latte-Art SC" data-en="05 Latte art SC">05 Latte-Art SC</span>
             <h3 data-de="Eigene M&amp;A- und Beratungs-Boutique." data-en="My own M&amp;A and consulting boutique.">Eigene M&amp;A- und Beratungs-Boutique.<span class="chapter-meta" data-de="2017-heute - Chairman and Owner, Spielmann Consulting AG" data-en="2017-today - Chairman and Owner, Spielmann Consulting AG">2017-heute - Chairman and Owner, Spielmann Consulting AG</span></h3>
             <p data-de="Inhabergefuehrte M&amp;A- und Beratungs-Boutique mit Standorten in Zug, Zuerich, Vaduz, Berlin, Muenchen, London, Singapur und Dubai. Erfolgsquote von nahezu 100 % bei Transaktionen, von Familienunternehmen in Nachfolgesituationen bis zu boersennotierten Global Playern. Versprechen: «Nicht einfacher, sondern besser!»" data-en="Owner-managed M&amp;A and consulting boutique with offices in Zug, Zurich, Vaduz, Berlin, Munich, London, Singapore and Dubai. Near-100% success rate on transactions, from owner-managed family businesses in succession situations to listed global players. Promise: «Not just simpler, but better!»">Inhabergefuehrte M&amp;A- und Beratungs-Boutique mit Standorten in Zug, Zuerich, Vaduz, Berlin, Muenchen, London, Singapur und Dubai. Erfolgsquote von nahezu 100 % bei Transaktionen, von Familienunternehmen in Nachfolgesituationen bis zu boersennotierten Global Playern. Versprechen: «Nicht einfacher, sondern besser!»</p>
           </li>
 
-          <li class="train-chapter" data-build-step="5" data-reveal>
-            <span class="train-chapter__index" data-de="06 Black Coffee Group" data-en="06 Black Coffee Group">06 Black Coffee Group</span>
+          <li class="brew-chapter" data-build-step="5" data-reveal>
+            <span class="brew-chapter__index" data-de="06 Bohnen - Black Coffee Group" data-en="06 Beans - Black Coffee Group">06 Bohnen - Black Coffee Group</span>
             <h3 data-de="Co-Founder einer Premium-Beverage-Plattform." data-en="Co-founder of a premium beverage platform.">Co-Founder einer Premium-Beverage-Plattform.<span class="chapter-meta" data-de="2018-heute - Chairman and Co-Founder, Black Coffee Group Ltd." data-en="2018-today - Chairman and Co-Founder, Black Coffee Group Ltd.">2018-heute - Chairman and Co-Founder, Black Coffee Group Ltd.</span></h3>
             <p data-de="Active Investor und Producer fuer Excellence-Tier-Marken in Coffee, Tee und Spices. Private-Label-Partnerschaften mit Cuisine Barista und Ducati Motor Holding, Pipeline mit Mercedes-Benz. Eigene Boutiquen, europaeische Produktion, Distribution in Deutschland, Benelux und Skandinavien." data-en="Active investor and producer for excellence-tier brands in coffee, tea and spices. Private-label partnerships with Cuisine Barista and Ducati Motor Holding, with a Mercedes-Benz pipeline. Own boutiques, European production and distribution across Germany, Benelux and Scandinavia.">Active Investor und Producer fuer Excellence-Tier-Marken in Coffee, Tee und Spices. Private-Label-Partnerschaften mit Cuisine Barista und Ducati Motor Holding, Pipeline mit Mercedes-Benz. Eigene Boutiquen, europaeische Produktion, Distribution in Deutschland, Benelux und Skandinavien.</p>
           </li>
 
-          <li class="train-chapter" data-build-step="6" data-reveal>
-            <span class="train-chapter__index" data-de="07 Lokomotive" data-en="07 Locomotive">07 Lokomotive</span>
+          <li class="brew-chapter" data-build-step="6" data-reveal>
+            <span class="brew-chapter__index" data-de="07 Servito - Heute" data-en="07 Servito - today">07 Servito - Heute</span>
             <h3 data-de="Heute: Angel Investor und Board Member." data-en="Today: Angel Investor and Board Member.">Heute: Angel Investor und Board Member.<span class="chapter-meta" data-de="Heute - Angel Investor / Executive Board Member" data-en="Today - Angel Investor / Executive Board Member">Heute - Angel Investor / Executive Board Member</span></h3>
-            <p data-de="Vorne im Zug: ich begleite Unternehmer und Boards an der Kreuzung von Strategie, Transformation und Kapital. Suche nach neuen, herausfordernden Board-Member-Mandaten - mit Fokus auf Visions-, Geschaeftsmodell- und Transformationsthemen." data-en="At the front of the train: I guide entrepreneurs and boards at the intersection of strategy, transformation and capital. Looking for new, challenging Board Member mandates focused on vision, business models and transformation.">Vorne im Zug: ich begleite Unternehmer und Boards an der Kreuzung von Strategie, Transformation und Kapital. Suche nach neuen, herausfordernden Board-Member-Mandaten - mit Fokus auf Visions-, Geschaeftsmodell- und Transformationsthemen.</p>
+            <p data-de="Die Tasse ist serviert. Ich begleite Unternehmer und Boards an der Kreuzung von Strategie, Transformation und Kapital. Suche nach neuen, herausfordernden Board-Member-Mandaten - mit Fokus auf Visions-, Geschaeftsmodell- und Transformationsthemen." data-en="The cup is served. I guide entrepreneurs and boards at the intersection of strategy, transformation and capital. Looking for new, challenging Board Member mandates focused on vision, business models and transformation.">Die Tasse ist serviert. Ich begleite Unternehmer und Boards an der Kreuzung von Strategie, Transformation und Kapital. Suche nach neuen, herausfordernden Board-Member-Mandaten - mit Fokus auf Visions-, Geschaeftsmodell- und Transformationsthemen.</p>
           </li>
         </ol>
       </div>

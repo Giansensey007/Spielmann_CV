@@ -4,39 +4,32 @@
       <stop offset="0" stop-color="#0a2c80"/>
       <stop offset="1" stop-color="#051a4d"/>
     </linearGradient>
-    <linearGradient id="rail" x1="0" x2="1" y1="0" y2="0">
-      <stop offset="0" stop-color="#C49A2A" stop-opacity="0"/>
-      <stop offset=".5" stop-color="#C49A2A" stop-opacity=".75"/>
-      <stop offset="1" stop-color="#C49A2A" stop-opacity="0"/>
+    <linearGradient id="cremaFill" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#e7c071"/>
+      <stop offset="1" stop-color="#8c6628"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect x="0" y="498" width="1200" height="2" fill="url(#rail)"/>
-  <rect x="0" y="514" width="1200" height="2" fill="url(#rail)" opacity=".5"/>
-  <g transform="translate(820 360)">
-    <rect x="0" y="60" width="280" height="6" fill="#C49A2A"/>
-    <rect x="-4" y="66" width="6" height="6" fill="#C49A2A"/>
-    <rect x="278" y="66" width="6" height="6" fill="#C49A2A"/>
-    <rect x="10" y="0" width="80" height="60" rx="6" fill="#FFFFFF"/>
-    <rect x="16" y="8" width="68" height="22" rx="1" fill="#072366"/>
-    <rect x="20" y="36" width="14" height="12" fill="#072366"/>
-    <rect x="42" y="36" width="14" height="12" fill="#072366"/>
-    <path d="M90 18 L120 -6 L120 60 L90 60 Z" fill="#C49A2A"/>
-    <rect x="120" y="0" width="80" height="60" rx="6" fill="#FFFFFF"/>
-    <rect x="126" y="8" width="68" height="22" rx="1" fill="#072366"/>
-    <rect x="130" y="36" width="14" height="12" fill="#072366"/>
-    <rect x="152" y="36" width="14" height="12" fill="#072366"/>
-    <path d="M200 18 L230 -6 L230 60 L200 60 Z" fill="#C49A2A"/>
-    <rect x="230" y="6" width="50" height="54" rx="6" fill="#0e3aaa"/>
-    <rect x="236" y="14" width="38" height="20" rx="1" fill="#FFFFFF"/>
-    <rect x="244" y="42" width="22" height="12" rx="2" fill="#FFFFFF"/>
-    <circle cx="32" cy="74" r="6" fill="#1A1A2E"/>
-    <circle cx="64" cy="74" r="6" fill="#1A1A2E"/>
-    <circle cx="142" cy="74" r="6" fill="#1A1A2E"/>
-    <circle cx="174" cy="74" r="6" fill="#1A1A2E"/>
-    <circle cx="248" cy="74" r="6" fill="#1A1A2E"/>
+  <g transform="translate(820 240)">
+    <ellipse cx="120" cy="312" rx="160" ry="14" fill="rgba(7, 35, 102, 0.25)"/>
+    <ellipse cx="120" cy="304" rx="155" ry="18" fill="#f7f2e8" stroke="#C49A2A" stroke-width="2"/>
+    <path d="M16,80 L224,80 Q220,220 188,260 Q160,288 120,288 Q80,288 52,260 Q20,220 16,80 Z"
+          fill="#FFFFFF" stroke="#072366" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M16,80 L224,80" stroke="#C49A2A" stroke-width="4" stroke-linecap="round"/>
+    <path d="M224,98 q44,-2 44,40 q0,42 -44,52" fill="none" stroke="#072366" stroke-width="3" stroke-linecap="round"/>
+    <path d="M16,86 L224,86 Q224,108 196,124 Q160,144 120,144 Q80,144 44,124 Q16,108 16,86 Z" fill="url(#cremaFill)"/>
+    <text x="120" y="200" text-anchor="middle"
+          font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="800"
+          fill="rgba(255,255,255,0.94)" letter-spacing="3">SC</text>
+    <g transform="translate(120 152)">
+      <path d="M-44,-30 L44,-30 Q40,32 0,52 Q-40,32 -44,-30 Z"
+            fill="none" stroke="rgba(255,255,255,0.94)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <ellipse cx="68" cy="38" rx="5" ry="11" fill="#FFFFFF" opacity="0.4"/>
+    <ellipse cx="100" cy="22" rx="6" ry="14" fill="#FFFFFF" opacity="0.32"/>
+    <ellipse cx="138" cy="34" rx="5" ry="12" fill="#FFFFFF" opacity="0.28"/>
   </g>
-  <text x="80" y="180" fill="#C49A2A" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6">ZUERICH - CHAIRMAN - FOUNDER - ANGEL INVESTOR</text>
+  <text x="80" y="180" fill="#C49A2A" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6">CHAIRMAN - FOUNDER - ANGEL INVESTOR</text>
   <text x="80" y="290" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="84" font-weight="800" letter-spacing="-3">Oliver Michael</text>
   <text x="80" y="372" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="84" font-weight="800" letter-spacing="-3">Spielmann</text>
   <rect x="80" y="396" width="120" height="3" fill="#C49A2A"/>

@@ -75,6 +75,9 @@ h4 {
   letter-spacing: -0.01em;
   margin: 0 0 16px;
   color: var(--text-dark);
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 p {
@@ -184,6 +187,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
   color: var(--white);
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -211,6 +215,10 @@ p {
   display: inline-flex;
   flex-direction: column;
   line-height: 1.1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .brand-name .brand-tagline {
@@ -351,8 +359,11 @@ p {
 
 .hero {
   position: relative;
-  min-height: 92vh;
-  padding: 0 0 96px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: clamp(640px, 92vh, 860px);
+  padding: 0 0 80px;
   margin-top: -72px;
   background:
     radial-gradient(ellipse at 80% 0%, rgba(196, 154, 42, 0.18), transparent 55%),
@@ -383,7 +394,11 @@ p {
   align-items: center;
   width: min(var(--max-width), calc(100% - (var(--page-gutter) * 2)));
   margin: 0 auto;
-  padding: 152px 0 0;
+  padding: 88px 0 0;
+}
+
+.hero-copy {
+  min-width: 0;
 }
 
 .hero-eyebrow {
@@ -414,9 +429,10 @@ p {
 .hero h1 {
   margin: 0 0 18px;
   color: var(--white);
-  font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.04;
   letter-spacing: -0.025em;
+  overflow-wrap: break-word;
 }
 
 .hero h1 .hero-quote {
@@ -445,8 +461,11 @@ p {
   max-width: 620px;
   margin-bottom: 30px;
   color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
   line-height: 1.6;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .hero-actions {
@@ -516,6 +535,7 @@ p {
 
 .hero-card {
   position: relative;
+  min-width: 0;
   align-self: center;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-lg);
@@ -525,6 +545,13 @@ p {
     rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-lg);
+}
+
+.hero-card h2,
+.hero-card p {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .hero-card-label {
@@ -568,22 +595,28 @@ p {
   letter-spacing: 0.04em;
 }
 
-/* ── Train build (centerpiece) ─────────────────────────────────────── */
+/* ── Brew build (espresso centerpiece) ─────────────────────────────── */
 
-.train-build {
+.brew-build {
   --build-progress: 0;
-  --train-x: 0;
+  --p-cup: 1;
+  --p-shot: 0;
+  --p-crema: 0;
+  --p-milk: 0;
+  --p-art: 0;
+  --p-beans: 0;
+  --p-stamp: 0;
   position: relative;
   padding: 80px 0 100px;
   background:
     linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
 }
 
-.train-build__intro {
+.brew-build__intro {
   margin-bottom: 32px;
 }
 
-.train-build__intro h2 {
+.brew-build__intro h2 {
   max-width: 760px;
   color: var(--navy);
   font-size: clamp(1.7rem, 3.2vw, 2.6rem);
@@ -591,147 +624,230 @@ p {
   margin-bottom: 14px;
 }
 
-.train-build__lede {
+.brew-build__lede {
   max-width: 660px;
   color: var(--text-body);
   font-size: clamp(1rem, 1.3vw, 1.12rem);
 }
 
-.train-build__layout {
+.brew-build__layout {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 38px;
   align-items: start;
 }
 
-.train-build__stage {
+.brew-build__stage {
   position: sticky;
   top: 96px;
   display: grid;
-  align-content: end;
-  justify-items: stretch;
-  min-height: min(620px, calc(100vh - 130px));
-  padding: 28px 0 64px;
+  align-content: center;
+  justify-items: center;
+  min-height: min(640px, calc(100vh - 130px));
+  padding: 36px 28px 64px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(circle at 18% 18%, rgba(196, 154, 42, 0.1), transparent 40%),
-    linear-gradient(180deg, #fbfcfe 0%, #f3f6fa 100%);
+    radial-gradient(circle at 18% 18%, rgba(196, 154, 42, 0.12), transparent 42%),
+    radial-gradient(circle at 80% 100%, rgba(7, 35, 102, 0.08), transparent 50%),
+    linear-gradient(180deg, #faf6ef 0%, #efe6d5 100%);
   box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
-.train-build__sky {
-  position: absolute;
-  inset: 0 0 38% 0;
-  background:
-    radial-gradient(ellipse at 25% 0%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 60%),
-    linear-gradient(180deg, #eef3fa 0%, #f3f6fa 100%);
-  pointer-events: none;
-}
-
-.train-build__mountains {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 38%;
-  height: 32%;
-  pointer-events: none;
-  opacity: 0.62;
-}
-
-.train-build__mountains svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.train-build__terrain {
+/* Wood / counter surface under the cup */
+.brew-build__counter {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 38%;
+  height: 32%;
   background:
-    linear-gradient(180deg, #e9edf2 0%, #dde3eb 100%);
+    linear-gradient(180deg, rgba(122, 78, 36, 0.18) 0%, rgba(122, 78, 36, 0.02) 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(122, 78, 36, 0.08) 0,
+      rgba(122, 78, 36, 0.08) 2px,
+      transparent 2px,
+      transparent 36px
+    );
   pointer-events: none;
 }
 
-.train-build__rails {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 22%;
-  height: 4px;
-  pointer-events: none;
-}
-
-.train-build__rails::before,
-.train-build__rails::after {
+.brew-build__counter::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    rgba(7, 35, 102, 0) 0%,
-    rgba(7, 35, 102, 0.5) 8%,
-    rgba(7, 35, 102, 0.5) 92%,
-    rgba(7, 35, 102, 0) 100%);
-}
-
-.train-build__rails::before {
   top: 0;
-}
-
-.train-build__rails::after {
-  top: 14px;
-  opacity: 0.55;
-}
-
-.train-build__sleepers {
-  position: absolute;
   left: 0;
   right: 0;
-  bottom: calc(22% - 14px);
-  height: 14px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(7, 35, 102, 0.35) 0px,
-    rgba(7, 35, 102, 0.35) 12px,
-    transparent 12px,
-    transparent 36px
-  );
-  background-position: calc(var(--train-x, 0) * -1px) 0;
+  height: 1px;
+  background: rgba(7, 35, 102, 0.12);
+}
+
+/* Steam wisps above the cup */
+.brew-build__steam {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: 120px;
+  height: 110px;
+  margin-left: -60px;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: calc(var(--p-shot, 0) * 0.85);
+  transition: opacity 320ms ease;
 }
 
-.train-build__progress {
+.brew-build__steam span {
   position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 22px;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(7, 35, 102, 0.1);
-  overflow: hidden;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  filter: blur(3px);
+  animation: brew-steam 4.6s ease-in-out infinite;
 }
 
-.train-build__progress-fill {
-  height: 100%;
-  width: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
-  transform: scaleX(var(--build-progress));
-  transform-origin: left;
-  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+.brew-build__steam span:nth-child(1) {
+  bottom: 0;
+  left: 30%;
+  width: 16px;
+  height: 16px;
+  animation-delay: 0s;
 }
 
-.train-build__signal {
-  position: absolute;
-  left: 6%;
+.brew-build__steam span:nth-child(2) {
+  bottom: 16px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  animation-delay: 0.6s;
+}
+
+.brew-build__steam span:nth-child(3) {
   bottom: 36px;
+  left: 36%;
+  width: 18px;
+  height: 18px;
+  animation-delay: 1.2s;
+}
+
+.brew-build__steam span:nth-child(4) {
+  bottom: 52px;
+  left: 56%;
+  width: 26px;
+  height: 26px;
+  animation-delay: 1.9s;
+}
+
+@keyframes brew-steam {
+  0%   { transform: translate3d(0, 0, 0) scale(0.85); opacity: 0; }
+  20%  { opacity: 0.65; }
+  60%  { opacity: 0.4; }
+  100% { transform: translate3d(0, -36px, 0) scale(1.4); opacity: 0; }
+}
+
+/* The cup ─────────────────────────────────────────────────────────────── */
+
+.brew-build__cup {
+  position: relative;
+  z-index: 2;
+  width: min(440px, 78%);
+  max-width: 100%;
+  opacity: var(--p-cup);
+  transform: translate3d(0, calc((1 - var(--p-cup)) * 28px), 0)
+    scale(calc(0.96 + var(--p-cup) * 0.04));
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 28px 38px rgba(7, 35, 102, 0.22));
+}
+
+.brew-build__cup .cup-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layers inside the cup are clipped to the cup interior via SVG clipPath.
+   Each layer covers the previous one as the brew progresses. */
+
+.brew-layer {
+  transform-box: fill-box;
+  opacity: 0;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 420ms ease;
+}
+
+/* Espresso fills from the bottom of the cup (y=300 in viewBox) upward.
+   Scale Y from origin at the cup floor so liquid rises naturally. */
+.brew-layer--espresso {
+  transform-origin: 50% 300px;
+  transform: scaleY(var(--p-shot, 0));
+  opacity: 1;
+}
+
+/* Crema disc fades onto the surface (doesn't change height: it sits on top
+   of the espresso surface as a golden cap). */
+.brew-layer--crema {
+  transform-origin: 200px 120px;
+  transform: scale(calc(0.92 + var(--p-crema, 0) * 0.08));
+  opacity: var(--p-crema, 0);
+}
+
+/* Milk foam disc fades onto the surface above the crema. */
+.brew-layer--milk {
+  transform-origin: 200px 118px;
+  transform: scale(calc(0.92 + var(--p-milk, 0) * 0.08));
+  opacity: var(--p-milk, 0);
+}
+
+/* Latte-art shield drawn on the foam */
+.brew-layer--art {
+  opacity: var(--p-art, 0);
+  transform: translate3d(0, calc((1 - var(--p-art, 0)) * 8px), 0)
+    scale(calc(0.84 + var(--p-art, 0) * 0.16));
+  transform-origin: 200px 118px;
+}
+
+/* Beans + BCG label */
+.brew-layer--beans {
+  opacity: var(--p-beans, 0);
+}
+
+.brew-layer--beans .bean {
+  transform-box: fill-box;
+  opacity: var(--p-beans, 0);
+  transition: opacity 380ms ease;
+}
+
+/* Stamp overlay */
+.brew-build__stamp {
+  --p: var(--p-stamp, 0);
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  z-index: 4;
+  padding: 8px 14px;
+  border: 3px solid rgba(196, 154, 42, 0.92);
+  border-radius: 8px;
+  color: rgba(196, 154, 42, 0.95);
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  background: rgba(196, 154, 42, 0.06);
+  text-transform: uppercase;
+  opacity: var(--p);
+  transform: rotate(calc(-10deg + (1 - var(--p)) * 38deg)) scale(calc(0.92 + var(--p) * 0.08));
+  transition: opacity 360ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.brew-build__signal {
+  position: absolute;
+  left: 28px;
+  bottom: 30px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -742,476 +858,39 @@ p {
   color: var(--mid-gray);
 }
 
-.train-build__signal::before {
+.brew-build__signal::before {
   content: "";
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 12px rgba(196, 154, 42, 0.4);
+  box-shadow: 0 0 12px rgba(196, 154, 42, 0.45);
 }
 
-/* The train itself ───────────────────────────────────────────────────── */
-
-.train {
-  position: relative;
-  z-index: 2;
-  height: 220px;
-  margin: 0 auto;
-  width: min(700px, 100%);
-  align-self: end;
-  bottom: 22%;
-}
-
-.train-track {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  gap: 6px;
-  padding-left: clamp(24px, 6vw, 64px);
-  transform: translateX(calc(var(--train-x, 0) * 1px));
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-/* Each wagon is positioned in the order [caboose, ..., locomotive] from left
-   to right, but the train has the locomotive on the right side - so visually
-   the train pulls forward (locomotive at the front of motion direction). */
-
-.wagon {
-  position: relative;
-  flex-shrink: 0;
-  height: 88px;
-  border-radius: 6px;
-  background: var(--white);
-  box-shadow: 0 6px 14px rgba(7, 35, 102, 0.12);
-  opacity: var(--p, 0);
-  transform: translate3d(calc((1 - var(--p, 0)) * -28px), calc((1 - var(--p, 0)) * 6px), 0)
-    scale(calc(0.96 + var(--p, 0) * 0.04));
-  transition: opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 540ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.wagon::before {
-  content: "";
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  bottom: -10px;
-  height: 12px;
-  border-radius: 0 0 6px 6px;
-  background: var(--gold);
-  opacity: calc(var(--p, 0) * 0.92);
-}
-
-.wagon::after {
-  content: "";
+.brew-build__progress {
   position: absolute;
   left: 8%;
   right: 8%;
-  bottom: -22px;
-  height: 12px;
-  background:
-    radial-gradient(circle at 18% 50%, var(--text-dark) 0 5px, transparent 5.5px),
-    radial-gradient(circle at 82% 50%, var(--text-dark) 0 5px, transparent 5.5px);
-  opacity: calc(var(--p, 0) * 1);
-}
-
-.wagon-window {
-  position: absolute;
-  top: 18%;
-  height: 36%;
-  border-radius: 2px;
-  background: var(--navy);
-  opacity: 0.92;
-}
-
-.wagon-window--lg {
-  left: 14%;
-  right: 14%;
-  background: linear-gradient(180deg, #102e7d 0%, #0a2256 100%);
-}
-
-.wagon-window--split {
-  display: flex;
-  gap: 4%;
-  left: 10%;
-  right: 10%;
-  background: transparent;
-}
-
-.wagon-window--split span {
-  flex: 1;
-  background: linear-gradient(180deg, #102e7d 0%, #0a2256 100%);
-  border-radius: 2px;
-}
-
-.wagon-stripe {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 64%;
-  height: 4px;
-  background: var(--gold);
-  opacity: 0.85;
-}
-
-.wagon-label {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 76%;
-  text-align: center;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.46rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--navy);
-}
-
-.wagon-num {
-  position: absolute;
-  top: 6%;
-  left: 8%;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: var(--gold);
-}
-
-/* Coupler between wagons */
-.coupler {
-  position: relative;
-  flex-shrink: 0;
-  width: 8px;
-  height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: var(--p, 0);
-  transition: opacity 360ms ease;
-}
-
-.coupler::before {
-  content: "";
-  width: 8px;
-  height: 6px;
-  background: var(--text-dark);
-  border-radius: 1px;
-}
-
-/* Wagon variants tied to chapters */
-
-.wagon[data-wagon="caboose"] {
-  --p: var(--p-caboose, 0);
-  width: clamp(60px, 9vw, 84px);
-  background: linear-gradient(180deg, #c0392b 0%, #8d271c 100%);
-  border-radius: 6px 4px 4px 6px;
-}
-
-.wagon[data-wagon="caboose"] .wagon-window--lg {
-  background: linear-gradient(180deg, #f4d27a 0%, #e6b94a 100%);
-  opacity: 0.96;
-}
-
-.wagon[data-wagon="caboose"] .wagon-stripe {
-  background: var(--white);
-  opacity: 0.45;
-}
-
-.wagon[data-wagon="caboose"] .wagon-label,
-.wagon[data-wagon="caboose"] .wagon-num {
-  color: var(--white);
-}
-
-.wagon[data-wagon="speisewagen"] {
-  --p: var(--p-speisewagen, 0);
-  width: clamp(110px, 16vw, 150px);
-  background: linear-gradient(180deg, #f7f9fc 0%, #e6ebf2 100%);
-}
-
-.wagon[data-wagon="speisewagen"] .wagon-stripe {
-  background: var(--gold);
-}
-
-.wagon[data-wagon="cargo"] {
-  --p: var(--p-cargo, 0);
-  width: clamp(96px, 14vw, 130px);
-  background: linear-gradient(180deg, #243d80 0%, #0e2461 100%);
-  border-radius: 4px;
-}
-
-.wagon[data-wagon="cargo"] .wagon-window--split span {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.32);
-}
-
-.wagon[data-wagon="cargo"] .wagon-stripe {
-  background: var(--gold);
-}
-
-.wagon[data-wagon="cargo"] .wagon-label {
-  color: var(--white);
-  letter-spacing: 0.22em;
-}
-
-.wagon[data-wagon="cargo"] .wagon-num {
-  color: var(--gold);
-}
-
-.wagon[data-wagon="executive"] {
-  --p: var(--p-executive, 0);
-  width: clamp(110px, 16vw, 148px);
-  background: linear-gradient(180deg, #ffffff 0%, #f1f5fb 100%);
-  border: 1px solid rgba(7, 35, 102, 0.1);
-}
-
-.wagon[data-wagon="executive"] .wagon-window--lg {
-  background: linear-gradient(180deg, #1a3c8f 0%, #072366 100%);
-}
-
-.wagon[data-wagon="executive"] .wagon-stripe {
-  background: var(--navy);
-  height: 6px;
-  top: 62%;
-}
-
-.wagon[data-wagon="boutique"] {
-  --p: var(--p-boutique, 0);
-  width: clamp(110px, 16vw, 150px);
-  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
-}
-
-.wagon[data-wagon="boutique"] .wagon-window--lg {
-  background: linear-gradient(180deg, #f4d27a 0%, #e6b94a 100%);
-  opacity: 0.92;
-}
-
-.wagon[data-wagon="boutique"] .wagon-stripe {
-  background: var(--gold);
-  height: 6px;
-}
-
-.wagon[data-wagon="boutique"] .wagon-label,
-.wagon[data-wagon="boutique"] .wagon-num {
-  color: var(--gold);
-}
-
-.wagon[data-wagon="bcg"] {
-  --p: var(--p-bcg, 0);
-  width: clamp(96px, 13vw, 124px);
-  background: linear-gradient(180deg, #1A1A2E 0%, #060611 100%);
-}
-
-.wagon[data-wagon="bcg"] .wagon-window--split span {
-  background: linear-gradient(180deg, #f4d27a 0%, #e6b94a 100%);
-  opacity: 0.92;
-}
-
-.wagon[data-wagon="bcg"] .wagon-stripe {
-  background: var(--gold);
-}
-
-.wagon[data-wagon="bcg"] .wagon-label,
-.wagon[data-wagon="bcg"] .wagon-num {
-  color: var(--gold);
-}
-
-/* The locomotive (Lok) - on the right (front) end */
-.wagon[data-wagon="locomotive"] {
-  --p: var(--p-locomotive, 0);
-  width: clamp(110px, 16vw, 148px);
-  height: 96px;
-  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
-  border-radius: 6px 28px 6px 6px;
-  margin-left: 4px;
-  position: relative;
+  bottom: 18px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(7, 35, 102, 0.1);
   overflow: hidden;
 }
 
-.wagon[data-wagon="locomotive"] .wagon-window--lg {
-  left: 6%;
-  right: 38%;
-  top: 24%;
-  height: 30%;
-  background: linear-gradient(180deg, #f4d27a 0%, #e6b94a 100%);
-  opacity: 0.94;
-  border-radius: 4px 14px 2px 2px;
+.brew-build__progress-fill {
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+  transform: scaleX(var(--build-progress));
+  transform-origin: left;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.wagon[data-wagon="locomotive"] .wagon-stripe {
-  background: var(--gold);
-}
+/* Chapter list (right side of layout) */
 
-.wagon[data-wagon="locomotive"] .wagon-label {
-  color: var(--gold);
-  letter-spacing: 0.2em;
-}
-
-.locomotive-nose {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 30%;
-  background:
-    radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.16), transparent 60%),
-    linear-gradient(135deg, var(--navy-light), var(--navy));
-  border-radius: 0 28px 6px 0;
-}
-
-.locomotive-light {
-  position: absolute;
-  top: 38%;
-  right: 8%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff7c2 0%, var(--gold) 60%, transparent 75%);
-  box-shadow: 0 0 22px rgba(255, 220, 130, 0.7);
-  opacity: calc(var(--p-locomotive, 0));
-}
-
-.locomotive-stack {
-  position: absolute;
-  top: -16px;
-  left: 22%;
-  width: 14px;
-  height: 18px;
-  background: var(--text-dark);
-  border-radius: 2px 2px 0 0;
-  opacity: var(--p-locomotive, 0);
-}
-
-.locomotive-steam {
-  position: absolute;
-  top: -64px;
-  left: 12%;
-  width: 80px;
-  height: 60px;
-  pointer-events: none;
-  opacity: calc(var(--p-locomotive, 0) * 0.95);
-}
-
-.locomotive-steam span {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
-  filter: blur(2px);
-}
-
-.locomotive-steam span:nth-child(1) {
-  bottom: 0;
-  left: 22%;
-  width: 22px;
-  height: 18px;
-  opacity: 0.85;
-}
-
-.locomotive-steam span:nth-child(2) {
-  bottom: 14px;
-  left: 36%;
-  width: 30px;
-  height: 24px;
-  opacity: 0.7;
-}
-
-.locomotive-steam span:nth-child(3) {
-  bottom: 28px;
-  left: 14%;
-  width: 24px;
-  height: 22px;
-  opacity: 0.55;
-}
-
-.locomotive-steam span:nth-child(4) {
-  bottom: 38px;
-  left: 48%;
-  width: 38px;
-  height: 28px;
-  opacity: 0.4;
-}
-
-/* SBB clock (front of the locomotive) */
-.sbb-clock {
-  position: absolute;
-  top: 28%;
-  right: 38%;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--white);
-  box-shadow: inset 0 0 0 2px var(--text-dark);
-  opacity: calc(var(--p-locomotive, 0) * 0.95);
-}
-
-.sbb-clock::before,
-.sbb-clock::after {
-  content: "";
-  position: absolute;
-  background: var(--text-dark);
-  border-radius: 1px;
-}
-
-.sbb-clock::before {
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 1.5px;
-  transform: translate(-1px, -50%) rotate(40deg);
-  transform-origin: left center;
-}
-
-.sbb-clock::after {
-  top: 50%;
-  left: 50%;
-  width: 6px;
-  height: 1.5px;
-  transform: translate(-1px, -50%) rotate(-30deg);
-  transform-origin: left center;
-}
-
-.sbb-clock-dot {
-  position: absolute;
-  top: 12%;
-  right: 38%;
-  transform: translateX(60%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #c0392b;
-  opacity: var(--p-locomotive, 0);
-}
-
-/* Stamp */
-.train-build__stamp {
-  --p: var(--p-stamp, 0);
-  position: absolute;
-  top: 54px;
-  right: 36px;
-  z-index: 4;
-  padding: 10px 18px;
-  border: 3px solid rgba(196, 154, 42, 0.9);
-  border-radius: 8px;
-  color: rgba(196, 154, 42, 0.95);
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.92rem;
-  font-weight: 800;
-  letter-spacing: 0.28em;
-  background: rgba(196, 154, 42, 0.06);
-  text-transform: uppercase;
-  opacity: var(--p);
-  transform: rotate(calc(-12deg + (1 - var(--p)) * 36deg)) scale(calc(0.92 + var(--p) * 0.08));
-  transition: opacity 360ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-
-.train-build__chapters {
+.brew-build__chapters {
   display: grid;
   gap: 24px;
   margin: 0;
@@ -1219,7 +898,7 @@ p {
   list-style: none;
 }
 
-.train-chapter {
+.brew-chapter {
   display: grid;
   gap: 8px;
   align-content: center;
@@ -1237,7 +916,7 @@ p {
     box-shadow 220ms ease;
 }
 
-.train-chapter.is-active {
+.brew-chapter.is-active {
   opacity: 1;
   transform: translateY(-2px) scale(1);
   border-color: rgba(196, 154, 42, 0.6);
@@ -1245,7 +924,7 @@ p {
     0 0 0 1px rgba(196, 154, 42, 0.25);
 }
 
-.train-chapter__index {
+.brew-chapter__index {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -1256,14 +935,14 @@ p {
   text-transform: uppercase;
 }
 
-.train-chapter__index::before {
+.brew-chapter__index::before {
   content: "";
   width: 22px;
   height: 2px;
   background: var(--gold);
 }
 
-.train-chapter h3 {
+.brew-chapter h3 {
   max-width: 480px;
   font-size: clamp(1.4rem, 2.4vw, 1.95rem);
   line-height: 1.12;
@@ -1272,7 +951,7 @@ p {
   margin: 4px 0 8px;
 }
 
-.train-chapter h3 .chapter-meta {
+.brew-chapter h3 .chapter-meta {
   display: block;
   margin-top: 6px;
   font-size: 0.78rem;
@@ -1282,7 +961,7 @@ p {
   text-transform: uppercase;
 }
 
-.train-chapter p {
+.brew-chapter p {
   max-width: 540px;
   color: var(--text-body);
   font-size: clamp(0.98rem, 1.15vw, 1.08rem);
@@ -1842,30 +1521,34 @@ p {
     gap: 22px;
   }
 
-  .train-build__layout {
+  .brew-build__layout {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
-  .train-build__stage {
+  .brew-build__stage {
     top: 86px;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 5;
     min-height: 0;
-    padding: 18px 0 48px;
+    padding: 24px 18px 56px;
   }
 
-  .train-build__chapters {
+  .brew-build__cup {
+    width: min(360px, 78%);
+  }
+
+  .brew-build__chapters {
     padding: 0;
     gap: 14px;
   }
 
-  .train-chapter {
+  .brew-chapter {
     min-height: auto;
     opacity: 0.7;
     transform: translateY(6px) scale(0.99);
   }
 
-  .train-chapter.is-active {
+  .brew-chapter.is-active {
     transform: translateY(0) scale(1);
   }
 
@@ -1879,13 +1562,59 @@ p {
     --page-gutter: 16px;
   }
 
+  body {
+    overflow-x: clip;
+  }
+
   .hero {
     min-height: auto;
-    padding-bottom: 64px;
+    padding-bottom: 56px;
+    margin-top: -56px;
   }
 
   .hero-grid {
-    padding-top: 120px;
+    padding-top: 88px;
+    gap: 22px;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    word-break: break-word;
+  }
+
+  .hero-lede {
+    font-size: 0.94rem;
+    word-break: break-word;
+  }
+
+  .hero-card {
+    padding: 22px 18px;
+  }
+
+  .hero-card h2 {
+    font-size: 1.18rem;
+  }
+
+  .hero-card p {
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+  }
+
+  .hero-roles li {
+    font-size: 0.74rem;
+    padding: 5px 10px;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .button {
+    flex: 1 1 auto;
+    padding: 0 14px;
   }
 
   .nav-shell {
@@ -1945,12 +1674,13 @@ p {
     padding-top: 6px;
   }
 
-  .train-build__stage {
-    aspect-ratio: 4 / 3;
+  .brew-build__stage {
+    aspect-ratio: auto;
+    min-height: 420px;
   }
 
-  .train {
-    width: 100%;
+  .brew-build__cup {
+    width: min(300px, 82%);
   }
 
   .quote-card::before {
@@ -1972,25 +1702,24 @@ p {
     animation-iteration-count: 1 !important;
   }
 
-  .train-build {
+  .brew-build {
     --build-progress: 1 !important;
-    --train-x: 0 !important;
-    --p-caboose: 1 !important;
-    --p-speisewagen: 1 !important;
-    --p-cargo: 1 !important;
-    --p-executive: 1 !important;
-    --p-boutique: 1 !important;
-    --p-bcg: 1 !important;
-    --p-locomotive: 1 !important;
+    --p-cup: 1 !important;
+    --p-shot: 1 !important;
+    --p-crema: 1 !important;
+    --p-milk: 1 !important;
+    --p-art: 1 !important;
+    --p-beans: 1 !important;
     --p-stamp: 1 !important;
   }
 
-  .train-build__stage {
+  .brew-build__stage {
     position: static;
   }
 
-  .wagon,
-  .coupler {
+  .brew-build__cup,
+  .brew-layer,
+  .brew-layer--beans .bean {
     opacity: 1 !important;
     transform: none !important;
   }
@@ -2000,12 +1729,12 @@ p {
     transform: none !important;
   }
 
-  .train-chapter {
+  .brew-chapter {
     opacity: 1 !important;
     transform: none !important;
   }
 
-  .train-build__stamp {
+  .brew-build__stamp {
     transform: rotate(-8deg) !important;
   }
 

@@ -1,6 +1,6 @@
 /* Oliver Michael Spielmann personal CV
- * Vanilla JS for scroll-driven train, bilingual toggle, counters, reveal,
- * sticky header and mobile nav. Single file, no dependencies. */
+ * Vanilla JS for scroll-driven espresso brew, bilingual toggle, counters,
+ * reveal-on-scroll, sticky header and mobile nav. Single file, no deps. */
 
 (function () {
   "use strict";
@@ -10,34 +10,21 @@
   const ease = (t) => 1 - Math.pow(1 - clamp(t), 3);
   const sub = (progress, start, end) => ease(clamp((progress - start) / (end - start)));
 
-  /* -- Build progress windows ------------------------------------------------
-   * The train has 7 wagons. Each wagon "fades + settles in" within its own
-   * progress window. The overall train also translates horizontally from left
-   * (rear in view) to right (locomotive arriving) as the user scrolls. */
-  const wagonRanges = {
-    caboose:     [0.00, 0.16],
-    speisewagen: [0.10, 0.28],
-    cargo:       [0.22, 0.40],
-    executive:   [0.36, 0.54],
-    boutique:    [0.50, 0.66],
-    bcg:         [0.62, 0.78],
-    locomotive:  [0.74, 0.92],
-    stamp:       [0.90, 1.00],
+  /* -- Brew progress windows -------------------------------------------------
+   * Seven brew stages, each with its own progress window across the whole
+   * scrolled centerpiece. The stages are layered like a real espresso:
+   *   cup -> espresso shot -> crema -> milk -> latte art -> beans -> stamp */
+  const stageRanges = {
+    shot:   [0.04, 0.22],
+    crema:  [0.20, 0.36],
+    milk:   [0.34, 0.52],
+    art:    [0.52, 0.68],
+    beans:  [0.66, 0.82],
+    stamp:  [0.82, 0.98],
   };
-
-  const couplerRanges = [
-    [0.10, 0.20],
-    [0.22, 0.30],
-    [0.36, 0.44],
-    [0.50, 0.58],
-    [0.62, 0.70],
-    [0.74, 0.82],
-  ];
 
   const build = document.querySelector("[data-build]");
   const buildChapters = Array.from(document.querySelectorAll("[data-build-step]"));
-  const trainEl = build ? build.querySelector(".train-track") : null;
-  const stageEl = build ? build.querySelector(".train-build__stage") : null;
 
   let activeChapter = -1;
   let rafId = null;
@@ -75,16 +62,16 @@
     return bestIdx;
   }
 
-  function trainTranslate(progress) {
-    if (!stageEl || !trainEl) return 0;
-    const stageRect = stageEl.getBoundingClientRect();
-    const trainRect = trainEl.getBoundingClientRect();
-    const stageWidth = stageRect.width;
-    const trainWidth = trainRect.width;
-    const startX = -Math.max(trainWidth - 40, stageWidth * 0.55);
-    const endX = Math.max(20, stageWidth - trainWidth - 24);
-    return startX + (endX - startX) * ease(progress);
-  }
+  /* ?brew=0..1 lets you force the brew progress for design review and
+   * screenshots. ?brew=preview also forces a chapter index. */
+  let forcedBrew = null;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("brew")) {
+      const v = parseFloat(params.get("brew"));
+      if (!Number.isNaN(v)) forcedBrew = clamp(v, 0, 1);
+    }
+  } catch (err) { /* ignore */ }
 
   function updateBuild() {
     if (!build) return;
@@ -94,20 +81,14 @@
     const chapterProgress = buildChapters.length <= 1
       ? 1
       : idx / (buildChapters.length - 1);
-    const progress = reduced ? 1 : Math.max(raw, chapterProgress * 0.95);
+    let progress = reduced ? 1 : Math.max(raw, chapterProgress * 0.95);
+    if (forcedBrew !== null) progress = forcedBrew;
 
     build.style.setProperty("--build-progress", progress.toFixed(3));
-    build.style.setProperty("--train-x", reduced ? 0 : trainTranslate(progress).toFixed(2));
 
-    Object.entries(wagonRanges).forEach(([key, [s, e]]) => {
+    Object.entries(stageRanges).forEach(([key, [s, e]]) => {
       const p = reduced ? 1 : sub(progress, s, e);
       build.style.setProperty(`--p-${key}`, p.toFixed(3));
-    });
-
-    couplerRanges.forEach(([s, e], i) => {
-      const p = reduced ? 1 : sub(progress, s, e);
-      const c = build.querySelector(`[data-coupler="${i + 1}"]`);
-      if (c) c.style.setProperty("--p", p.toFixed(3));
     });
 
     setActiveChapter(idx);
