@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-de="Zum Hauptinhalt springen" data-en="Skip to main content">Zum Hauptinhalt springen</a>
@@ -110,7 +110,13 @@
               <defs>
                 <!-- Cup interior clip: opening ellipse + tapered body, used to mask all liquid -->
                 <clipPath id="cupInsideClip" clipPathUnits="userSpaceOnUse">
-                  <path d="M96,118 Q96,98 200,98 Q304,98 304,118 Q298,254 268,288 Q236,312 200,312 Q164,312 132,288 Q102,254 96,118 Z"/>
+                  <path d="M96,118
+                           Q96,98 200,98
+                           Q304,98 304,118
+                           Q298,250 260,294
+                           Q230,314 200,314
+                           Q170,314 140,294
+                           Q102,250 96,118 Z"/>
                 </clipPath>
 
                 <!-- Porcelain body shading (cool side-light from upper left) -->
@@ -233,22 +239,30 @@
                 </pattern>
               </defs>
 
-              <!-- Cast shadow under the saucer -->
-              <ellipse cx="200" cy="332" rx="172" ry="10" fill="rgba(7, 35, 102, 0.22)" filter="url(#cupShadow)"/>
+              <!-- Soft cast shadow under the saucer on the table -->
+              <ellipse cx="200" cy="338" rx="170" ry="9" fill="rgba(7, 35, 102, 0.28)"/>
+              <ellipse cx="200" cy="340" rx="160" ry="6" fill="rgba(7, 35, 102, 0.18)"/>
 
-              <!-- Saucer (3D: side ring + top plate + center well) -->
+              <!-- Saucer - one continuous piece sitting flat on the table.
+                   Designed as a single shallow disc with a subtle rim and a
+                   centred well where the cup foot sits. -->
               <g class="cup-saucer">
-                <!-- Side ring (visible underside) -->
-                <ellipse cx="200" cy="328" rx="158" ry="13" fill="url(#saucerSide)"/>
-                <!-- Top plate -->
-                <ellipse cx="200" cy="320" rx="158" ry="20" fill="url(#saucerTop)"/>
-                <!-- Gold rim line on saucer edge -->
-                <ellipse cx="200" cy="320" rx="158" ry="20" fill="none" stroke="#C49A2A" stroke-width="0.8" opacity="0.75"/>
-                <!-- Center well (the hollow where the cup foot sits) -->
-                <ellipse cx="200" cy="316" rx="76" ry="9" fill="#dde2ea"/>
-                <ellipse cx="200" cy="316" rx="76" ry="9" fill="none" stroke="rgba(7, 35, 102, 0.15)" stroke-width="1"/>
-                <!-- Subtle highlight on saucer top -->
-                <ellipse cx="170" cy="312" rx="56" ry="3" fill="rgba(255, 255, 255, 0.8)"/>
+                <!-- Saucer side band (visible thickness of the disc) -->
+                <ellipse cx="200" cy="332" rx="158" ry="10" fill="url(#saucerSide)"/>
+                <!-- Saucer top plate -->
+                <ellipse cx="200" cy="324" rx="158" ry="16" fill="url(#saucerTop)"/>
+                <!-- Outer gold rim on saucer edge -->
+                <ellipse cx="200" cy="324" rx="158" ry="16"
+                         fill="none" stroke="#C49A2A" stroke-width="0.8" opacity="0.65"/>
+                <!-- Inner concentric ring (decorative) -->
+                <ellipse cx="200" cy="322" rx="120" ry="11"
+                         fill="none" stroke="rgba(7, 35, 102, 0.12)" stroke-width="0.6"/>
+                <!-- Centre well (the hollow where the cup foot rests) -->
+                <ellipse cx="200" cy="320" rx="64" ry="7" fill="#dde2ea"/>
+                <ellipse cx="200" cy="320" rx="64" ry="7"
+                         fill="none" stroke="rgba(7, 35, 102, 0.20)" stroke-width="0.8"/>
+                <!-- Soft top highlight on the saucer plate -->
+                <ellipse cx="172" cy="318" rx="62" ry="3" fill="rgba(255, 255, 255, 0.7)"/>
               </g>
 
               <!-- Handle (drawn behind the cup body so the body covers the join) -->
@@ -267,20 +281,24 @@
                       fill="none" stroke="#C49A2A" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
               </g>
 
-              <!-- Cup body (ellipse-topped, tapered, shaded) -->
+              <!-- Cup body (ellipse-topped, tapered with a narrow foot at the base
+                   that sits cleanly in the saucer well at y=314). -->
               <g class="cup-body" filter="url(#cupShadow)">
-                <!-- Outer porcelain shape -->
-                <path d="M96,118 Q96,98 200,98 Q304,98 304,118 Q298,254 268,288 Q236,312 200,312 Q164,312 132,288 Q102,254 96,118 Z"
+                <!-- Outer porcelain shape - tapers to a narrow foot at the bottom -->
+                <path d="M96,118
+                         Q96,98 200,98
+                         Q304,98 304,118
+                         Q298,250 260,294
+                         Q230,314 200,314
+                         Q170,314 140,294
+                         Q102,250 96,118 Z"
                       fill="url(#porcelainBody)"/>
-                <!-- Side shadow (right) -->
-                <path d="M260,124 Q272,250 244,294 Q230,304 220,308 L220,124 Z"
+                <!-- Side shadow (right) - gives 3D roundness -->
+                <path d="M256,124 Q270,250 240,294 Q224,308 214,312 L214,124 Z"
                       fill="rgba(7, 35, 102, 0.08)"/>
-                <!-- Vertical highlight (left) -->
-                <path d="M120,128 Q116,200 132,260 L142,260 Q126,200 132,130 Z"
+                <!-- Vertical highlight (left) - light catches the curve -->
+                <path d="M120,128 Q116,200 134,266 L142,264 Q126,200 132,130 Z"
                       fill="rgba(255, 255, 255, 0.55)"/>
-                <!-- Bottom curve dark accent -->
-                <path d="M150,304 Q200,316 250,304 Q200,322 150,304 Z"
-                      fill="rgba(7, 35, 102, 0.18)"/>
                 <!-- Subtle SC monogram on the side of the cup -->
                 <text x="200" y="240" text-anchor="middle"
                       font-family="Open Sans, Helvetica, sans-serif"
@@ -300,7 +318,7 @@
                 <!-- 1. Espresso - dark base liquid filling the cup nearly to the rim.
                      Top surface at y=124 (just below the rim opening). -->
                 <g class="brew-layer brew-layer--espresso">
-                  <rect x="80" y="124" width="240" height="180" fill="url(#espressoBody)"/>
+                  <rect x="80" y="124" width="240" height="200" fill="url(#espressoBody)"/>
                   <!-- Faint meniscus glint on the espresso surface -->
                   <ellipse cx="200" cy="124" rx="100" ry="10" fill="#2a1407"/>
                   <ellipse cx="200" cy="122" rx="100" ry="10"
@@ -498,6 +516,57 @@
 
                 <!-- Bottom base shadow under the bag (where it sits on counter) -->
                 <ellipse cx="44" cy="142" rx="38" ry="2" fill="rgba(0, 0, 0, 0.22)"/>
+              </g>
+
+              <!-- Coffee beans scattered on the table next to the saucer.
+                   Placed to the right of the cup at y=346-358 (below the saucer
+                   level, on the wood table). Each bean has a soft cast shadow
+                   and 3D shading. Same opacity as the bag (chapter 6). -->
+              <g class="brew-layer brew-layer--bag">
+                <!-- Bean 1 - far right, slightly tilted -->
+                <g transform="translate(366 348) rotate(28)">
+                  <ellipse cx="2" cy="6" rx="14" ry="2.4" fill="rgba(0, 0, 0, 0.32)"/>
+                  <ellipse cx="0" cy="0" rx="13" ry="8" fill="url(#beanBody)"/>
+                  <path d="M-12,0 Q-7,-3 0,-3 Q7,-3 12,0 Q7,3 0,3 Q-7,3 -12,0 Z"
+                        fill="rgba(20, 8, 2, 0.85)"/>
+                  <path d="M-11,-0.6 Q-5,-2 0,-2 Q5,-2 11,-0.6"
+                        fill="none" stroke="rgba(255, 220, 170, 0.45)" stroke-width="0.6"/>
+                  <path d="M-12,-3 Q-6,-7 0,-7 Q6,-7 12,-3"
+                        fill="none" stroke="url(#beanRim)" stroke-width="1.4" stroke-linecap="round"/>
+                </g>
+                <!-- Bean 2 - middle right, on its side -->
+                <g transform="translate(338 354) rotate(-12)">
+                  <ellipse cx="2" cy="6" rx="14" ry="2.4" fill="rgba(0, 0, 0, 0.32)"/>
+                  <ellipse cx="0" cy="0" rx="13" ry="8" fill="url(#beanBody)"/>
+                  <path d="M-12,0 Q-7,-3 0,-3 Q7,-3 12,0 Q7,3 0,3 Q-7,3 -12,0 Z"
+                        fill="rgba(20, 8, 2, 0.85)"/>
+                  <path d="M-11,-0.6 Q-5,-2 0,-2 Q5,-2 11,-0.6"
+                        fill="none" stroke="rgba(255, 220, 170, 0.45)" stroke-width="0.6"/>
+                  <path d="M-12,-3 Q-6,-7 0,-7 Q6,-7 12,-3"
+                        fill="none" stroke="url(#beanRim)" stroke-width="1.4" stroke-linecap="round"/>
+                </g>
+                <!-- Bean 3 - close to saucer, smaller -->
+                <g transform="translate(372 340) rotate(56)">
+                  <ellipse cx="2" cy="6" rx="12" ry="2" fill="rgba(0, 0, 0, 0.3)"/>
+                  <ellipse cx="0" cy="0" rx="11" ry="7" fill="url(#beanBody)"/>
+                  <path d="M-10,0 Q-6,-2.5 0,-2.5 Q6,-2.5 10,0 Q6,2.5 0,2.5 Q-6,2.5 -10,0 Z"
+                        fill="rgba(20, 8, 2, 0.85)"/>
+                  <path d="M-9,-0.5 Q-4,-1.6 0,-1.6 Q4,-1.6 9,-0.5"
+                        fill="none" stroke="rgba(255, 220, 170, 0.4)" stroke-width="0.5"/>
+                  <path d="M-10,-2.5 Q-5,-6 0,-6 Q5,-6 10,-2.5"
+                        fill="none" stroke="url(#beanRim)" stroke-width="1.2" stroke-linecap="round"/>
+                </g>
+                <!-- Bean 4 - far right, partially turned -->
+                <g transform="translate(386 358) rotate(-42)">
+                  <ellipse cx="2" cy="6" rx="13" ry="2.2" fill="rgba(0, 0, 0, 0.3)"/>
+                  <ellipse cx="0" cy="0" rx="12" ry="7.5" fill="url(#beanBody)"/>
+                  <path d="M-11,0 Q-6,-2.8 0,-2.8 Q6,-2.8 11,0 Q6,2.8 0,2.8 Q-6,2.8 -11,0 Z"
+                        fill="rgba(20, 8, 2, 0.85)"/>
+                  <path d="M-10,-0.6 Q-5,-1.8 0,-1.8 Q5,-1.8 10,-0.6"
+                        fill="none" stroke="rgba(255, 220, 170, 0.4)" stroke-width="0.5"/>
+                  <path d="M-11,-2.8 Q-5,-6.5 0,-6.5 Q5,-6.5 11,-2.8"
+                        fill="none" stroke="url(#beanRim)" stroke-width="1.3" stroke-linecap="round"/>
+                </g>
               </g>
 
               <!-- Gold rim - drawn here AFTER the foam so only the back rim is visible
