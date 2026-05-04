@@ -163,12 +163,44 @@
                   <stop offset="1" stop-color="#d8c39c"/>
                 </radialGradient>
 
-                <!-- Bean grain -->
-                <radialGradient id="beanBody" cx=".5" cy=".4" r=".65">
-                  <stop offset="0" stop-color="#5e2f10"/>
-                  <stop offset=".55" stop-color="#3a1908"/>
-                  <stop offset="1" stop-color="#1d0c03"/>
+                <!-- Bean grain (3D warm-roast brown with chocolatey core) -->
+                <radialGradient id="beanBody" cx=".4" cy=".3" r=".75">
+                  <stop offset="0" stop-color="#a86a32"/>
+                  <stop offset=".25" stop-color="#7a4318"/>
+                  <stop offset=".7" stop-color="#3e1d08"/>
+                  <stop offset="1" stop-color="#15080a"/>
                 </radialGradient>
+
+                <!-- Bean rim highlight (where light catches the curved edge) -->
+                <linearGradient id="beanRim" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(255, 220, 170, 0.85)"/>
+                  <stop offset=".4" stop-color="rgba(255, 200, 140, 0.4)"/>
+                  <stop offset="1" stop-color="rgba(80, 40, 12, 0)"/>
+                </linearGradient>
+
+                <!-- Foam disc (cappuccino microfoam: cream with subtle warm shading) -->
+                <radialGradient id="foamDisc" cx=".4" cy=".35" r=".75">
+                  <stop offset="0" stop-color="#fffaf0"/>
+                  <stop offset=".55" stop-color="#f4e4c2"/>
+                  <stop offset=".88" stop-color="#d6b878"/>
+                  <stop offset="1" stop-color="#8a6024"/>
+                </radialGradient>
+
+                <!-- Foam micro-bubble texture pattern -->
+                <pattern id="foamBubbles" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                  <circle cx="3" cy="3" r="0.7" fill="rgba(255, 255, 255, 0.55)"/>
+                  <circle cx="9" cy="6" r="0.5" fill="rgba(255, 255, 255, 0.4)"/>
+                  <circle cx="6" cy="11" r="0.6" fill="rgba(255, 255, 255, 0.5)"/>
+                  <circle cx="12" cy="11" r="0.4" fill="rgba(255, 255, 255, 0.35)"/>
+                </pattern>
+
+                <!-- Bean drop shadow filter (soft) -->
+                <filter id="beanShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="0.8"/>
+                  <feOffset dx="0" dy="1.2" result="off"/>
+                  <feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+                  <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
 
                 <!-- Soft drop shadow under the cup -->
                 <filter id="cupShadow" x="-20%" y="-10%" width="140%" height="140%">
@@ -286,44 +318,106 @@
                   <circle cx="248" cy="116" r="1.2" fill="rgba(255, 255, 255, 0.6)"/>
                 </g>
 
-                <!-- 4. Latte-art SC shield drawn on the foam surface (sits on top of milk).
-                     Etched-into-foam look: dark espresso strokes on cream background. -->
+                <!-- 4. Cappuccino foam: a thick cream microfoam mass that fills the
+                     UPPER PORTION of the cup interior, not just the rim. The foam
+                     occupies y=104 to y=180 (about 30% of the cup depth), giving a
+                     proper cappuccino look where you see milk foam inside the cup. -->
                 <g class="brew-layer brew-layer--art">
-                  <g transform="translate(200 118)">
-                    <!-- Outer shield petal: dark-on-cream like classic latte art -->
-                    <path d="M-32,-7 C-32,-15 -16,-19 0,-19 C16,-19 32,-15 32,-7 C30,4 18,12 0,18 C-18,12 -30,4 -32,-7 Z"
-                          fill="rgba(180, 130, 70, 0.85)"
-                          stroke="rgba(70, 40, 12, 0.92)" stroke-width="1" stroke-linejoin="round"/>
-                    <!-- Two inner rosetta leaves -->
-                    <path d="M-12,-2 C-14,4 -8,8 0,10 C8,8 14,4 12,-2 C8,-7 -8,-7 -12,-2 Z"
-                          fill="none" stroke="rgba(252, 240, 215, 0.95)" stroke-width="1"/>
-                    <!-- SC monogram, dark coffee on the petal -->
-                    <text x="0" y="2" text-anchor="middle"
+                  <!-- 1. The foam mass - a tall cream rounded body filling the upper cup.
+                       This is what you actually see inside a cappuccino. -->
+                  <path d="M98,118 Q98,104 200,104 Q302,104 302,118
+                           Q300,168 200,180 Q100,168 98,118 Z"
+                        fill="url(#foamDisc)"/>
+
+                  <!-- 2. Foam top surface ellipse (the visible top of the foam, where the
+                       latte art is drawn) -->
+                  <ellipse cx="200" cy="118" rx="100" ry="14" fill="url(#foamDisc)"/>
+
+                  <!-- 3. Bright top-left highlight on the foam surface -->
+                  <ellipse cx="170" cy="113" rx="56" ry="6"
+                           fill="rgba(255, 255, 255, 0.7)"/>
+
+                  <!-- 4. Foam micro-bubble texture on the surface -->
+                  <ellipse cx="200" cy="118" rx="100" ry="14"
+                           fill="url(#foamBubbles)" opacity="0.7"/>
+
+                  <!-- 5. Subtle warm shading at the bottom of the foam mass (where it
+                       meets the espresso) -->
+                  <path d="M104,160 Q200,178 296,160 Q200,196 104,160 Z"
+                        fill="rgba(180, 130, 70, 0.3)"/>
+
+                  <!-- 6. Crisp foam edge highlight -->
+                  <ellipse cx="200" cy="117" rx="98" ry="13"
+                           fill="none" stroke="rgba(255, 255, 255, 0.9)" stroke-width="0.9"/>
+
+                  <!-- 7. Thin gold rim catching light on the foam edge -->
+                  <ellipse cx="200" cy="116" rx="98" ry="13"
+                           fill="none" stroke="rgba(196, 154, 42, 0.55)" stroke-width="0.5"/>
+
+                  <!-- 8. SC monogram drawn into the foam, large and legible, barista-style.
+                       Stacked text layers create a soft etched look. -->
+                  <g transform="translate(200 130)" class="art-monogram">
+                    <text x="0" y="0" text-anchor="middle"
                           font-family="Open Sans, Helvetica, sans-serif"
-                          font-size="9" font-weight="800"
-                          fill="rgba(54, 30, 8, 0.95)" letter-spacing="2">SC</text>
+                          font-size="32" font-weight="800"
+                          fill="rgba(40, 20, 6, 0.22)" letter-spacing="6"
+                          dx="0.8" dy="1">SC</text>
+                    <text x="0" y="0" text-anchor="middle"
+                          font-family="Open Sans, Helvetica, sans-serif"
+                          font-size="32" font-weight="800"
+                          fill="rgba(54, 28, 8, 0.96)" letter-spacing="6"
+                          stroke="rgba(28, 14, 4, 0.85)" stroke-width="0.6">SC</text>
+                    <text x="0" y="-0.6" text-anchor="middle"
+                          font-family="Open Sans, Helvetica, sans-serif"
+                          font-size="32" font-weight="800"
+                          fill="rgba(255, 240, 210, 0.28)" letter-spacing="6">SC</text>
                   </g>
                 </g>
 
-                <!-- 5. BCG coffee beans floating on the foam -->
+                <!-- 5. BCG coffee beans floating on the foam.
+                     Three beans, pronounced 3D shape: warm-roast brown body with a deep
+                     central groove (seam), specular rim highlight on the upper edge, and
+                     a soft cast shadow on the foam below. Beans are large enough to read
+                     clearly at any cup size. -->
                 <g class="brew-layer brew-layer--beans">
-                  <g class="bean" transform="translate(146 110) rotate(-26)">
-                    <ellipse cx="0" cy="2" rx="11" ry="2.4" fill="rgba(0, 0, 0, 0.22)"/>
-                    <ellipse cx="0" cy="0" rx="11" ry="6.5" fill="url(#beanBody)"/>
-                    <path d="M-8,-1 q4,-2 8,0" fill="none" stroke="rgba(0, 0, 0, 0.75)" stroke-width="1"/>
-                    <ellipse cx="-3" cy="-2" rx="2.4" ry="1.6" fill="rgba(255, 220, 170, 0.4)"/>
+                  <!-- Bean 1 (left, sitting on the foam at the back) -->
+                  <g class="bean" transform="translate(146 112) rotate(-28)">
+                    <ellipse cx="2" cy="11" rx="22" ry="4" fill="rgba(40, 18, 6, 0.55)"/>
+                    <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#beanBody)"/>
+                    <path d="M-21,-1 Q-14,-14 0,-14 Q14,-14 21,-1 Q14,1.4 0,1.4 Q-14,1.4 -21,-1 Z"
+                          fill="rgba(0, 0, 0, 0.28)"/>
+                    <path d="M-18,0 Q-10,-4 0,-4 Q10,-4 18,0 Q10,4 0,4 Q-10,4 -18,0 Z"
+                          fill="rgba(20, 8, 2, 0.92)"/>
+                    <path d="M-17,-0.8 Q-8,-2.8 0,-2.8 Q8,-2.8 17,-0.8"
+                          fill="none" stroke="rgba(255, 220, 170, 0.5)" stroke-width="0.9"/>
+                    <path d="M-19,-4.5 Q-11,-12 0,-12 Q11,-12 19,-4.5"
+                          fill="none" stroke="url(#beanRim)" stroke-width="2.4" stroke-linecap="round"/>
                   </g>
-                  <g class="bean" transform="translate(254 108) rotate(22)">
-                    <ellipse cx="0" cy="2" rx="11" ry="2.4" fill="rgba(0, 0, 0, 0.22)"/>
-                    <ellipse cx="0" cy="0" rx="11" ry="6.5" fill="url(#beanBody)"/>
-                    <path d="M-8,-1 q4,-2 8,0" fill="none" stroke="rgba(0, 0, 0, 0.75)" stroke-width="1"/>
-                    <ellipse cx="-3" cy="-2" rx="2.4" ry="1.6" fill="rgba(255, 220, 170, 0.4)"/>
+                  <!-- Bean 2 (right, sitting on the foam at the back) -->
+                  <g class="bean" transform="translate(254 110) rotate(30)">
+                    <ellipse cx="2" cy="11" rx="22" ry="4" fill="rgba(40, 18, 6, 0.55)"/>
+                    <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#beanBody)"/>
+                    <path d="M-21,-1 Q-14,-14 0,-14 Q14,-14 21,-1 Q14,1.4 0,1.4 Q-14,1.4 -21,-1 Z"
+                          fill="rgba(0, 0, 0, 0.28)"/>
+                    <path d="M-18,0 Q-10,-4 0,-4 Q10,-4 18,0 Q10,4 0,4 Q-10,4 -18,0 Z"
+                          fill="rgba(20, 8, 2, 0.92)"/>
+                    <path d="M-17,-0.8 Q-8,-2.8 0,-2.8 Q8,-2.8 17,-0.8"
+                          fill="none" stroke="rgba(255, 220, 170, 0.5)" stroke-width="0.9"/>
+                    <path d="M-19,-4.5 Q-11,-12 0,-12 Q11,-12 19,-4.5"
+                          fill="none" stroke="url(#beanRim)" stroke-width="2.4" stroke-linecap="round"/>
                   </g>
-                  <g class="bean" transform="translate(200 130) rotate(-8)">
-                    <ellipse cx="0" cy="2" rx="11" ry="2.4" fill="rgba(0, 0, 0, 0.22)"/>
-                    <ellipse cx="0" cy="0" rx="11" ry="6.5" fill="url(#beanBody)"/>
-                    <path d="M-8,-1 q4,-2 8,0" fill="none" stroke="rgba(0, 0, 0, 0.75)" stroke-width="1"/>
-                    <ellipse cx="-3" cy="-2" rx="2.4" ry="1.6" fill="rgba(255, 220, 170, 0.4)"/>
+                  <!-- Bean 3 (front-center, lower on the foam dome) -->
+                  <g class="bean" transform="translate(200 152) rotate(-10)">
+                    <ellipse cx="2" cy="11" rx="22" ry="4" fill="rgba(40, 18, 6, 0.55)"/>
+                    <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#beanBody)"/>
+                    <path d="M-21,-1 Q-14,-14 0,-14 Q14,-14 21,-1 Q14,1.4 0,1.4 Q-14,1.4 -21,-1 Z"
+                          fill="rgba(0, 0, 0, 0.28)"/>
+                    <path d="M-18,0 Q-10,-4 0,-4 Q10,-4 18,0 Q10,4 0,4 Q-10,4 -18,0 Z"
+                          fill="rgba(20, 8, 2, 0.92)"/>
+                    <path d="M-17,-0.8 Q-8,-2.8 0,-2.8 Q8,-2.8 17,-0.8"
+                          fill="none" stroke="rgba(255, 220, 170, 0.5)" stroke-width="0.9"/>
+                    <path d="M-19,-4.5 Q-11,-12 0,-12 Q11,-12 19,-4.5"
+                          fill="none" stroke="url(#beanRim)" stroke-width="2.4" stroke-linecap="round"/>
                   </g>
                 </g>
               </g>

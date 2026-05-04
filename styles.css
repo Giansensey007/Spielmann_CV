@@ -769,55 +769,41 @@ p {
 }
 
 /* Layers inside the cup are clipped to the cup interior via SVG clipPath.
-   Each layer covers the previous one as the brew progresses. */
+   Each layer covers the previous one as the brew progresses.
+   We avoid transform-box because Chrome's behaviour is inconsistent for SVG
+   children; instead, the espresso uses an SVG-attribute transform via JS
+   custom property and the rest fade with opacity only. */
 
 .brew-layer {
-  transform-box: fill-box;
   opacity: 0;
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 420ms ease;
 }
 
-/* Espresso fills from the bottom of the cup (y=300 in viewBox) upward.
-   Scale Y from origin at the cup floor so liquid rises naturally. */
+/* Espresso fills from the bottom of the cup upward.
+   The rect is full-height (y=120, h=180); we translate it down by the unfilled
+   portion so the visible top edge of the rect rises as p-shot grows. */
 .brew-layer--espresso {
-  transform-origin: 50% 300px;
-  transform: scaleY(var(--p-shot, 0));
+  transform: translate(0, calc((1 - var(--p-shot, 0)) * 180px));
   opacity: 1;
 }
 
-/* Crema disc fades onto the surface (doesn't change height: it sits on top
-   of the espresso surface as a golden cap). */
+/* The remaining layers are drawn at fixed SVG positions.
+   They fade in via opacity only (no scale or translate transform). */
 .brew-layer--crema {
-  transform-origin: 200px 120px;
-  transform: scale(calc(0.92 + var(--p-crema, 0) * 0.08));
   opacity: var(--p-crema, 0);
 }
 
-/* Milk foam disc fades onto the surface above the crema. */
 .brew-layer--milk {
-  transform-origin: 200px 118px;
-  transform: scale(calc(0.92 + var(--p-milk, 0) * 0.08));
   opacity: var(--p-milk, 0);
 }
 
-/* Latte-art shield drawn on the foam */
 .brew-layer--art {
   opacity: var(--p-art, 0);
-  transform: translate3d(0, calc((1 - var(--p-art, 0)) * 8px), 0)
-    scale(calc(0.84 + var(--p-art, 0) * 0.16));
-  transform-origin: 200px 118px;
 }
 
-/* Beans + BCG label */
 .brew-layer--beans {
   opacity: var(--p-beans, 0);
-}
-
-.brew-layer--beans .bean {
-  transform-box: fill-box;
-  opacity: var(--p-beans, 0);
-  transition: opacity 380ms ease;
 }
 
 /* Stamp overlay */
