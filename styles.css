@@ -727,70 +727,68 @@ p {
 
 /* Steam wisps above the cup */
 /* Steam-to-BCG-logo morph - the visual centrepiece of chapter 6.
-   The two wisps are SVG paths copied verbatim from the official BCG icon,
-   placed inside the cup-svg above the foam dome. The same wisp shape plays
-   two roles in the timeline:
 
-     1) Steam (visible from chapter 2): the "brew-steam" group, white,
-        blurred, gently swaying, growing more solid as the cup brews.
-     2) Logo mark (visible from chapter 6): the "brew-logo" group, solid
-        black, sharp, with the BCG wordmark fading in to the right.
+   ONE shared wisp element morphs through three readings:
+     - white blurred steam (chapter 2-4)
+     - darkening + sliding LEFT (chapter 5)
+     - solid black logo + wordmark fades in next to it (chapter 6)
 
-   The hand-off happens around chapter 6: the steam fades out as the logo
-   fades in. Because both occupy the same x-region, the eye reads the
-   shape "crystalising" from steam into the brand. */
+   Driving variables:
+     --p-shot   makes the wisps appear at all (chapter 2 onward)
+     --p-bag    darkens, sharpens, slides left, AND fades in the wordmark
 
-.brew-steam {
-  /* Visible from chapter 2 onward, peaks before chapter 6, then dissolves
-     as the logo state takes over. Computed from --p-shot (steam-on) and
-     --p-bag (logo-on) so the two states cross-fade. */
-  opacity: calc(var(--p-shot, 0) * 0.85 * (1 - var(--p-bag, 0)));
+   Because the SAME path nodes are reused, the morph is literally a
+   transformation of one shape - no jumping between two stacked elements.
+   Nice side effect: the breathing animation on the wisp simply slows
+   down and stops as --p-bag grows, so the steam "settles" into a logo. */
+
+.brew-mark {
+  opacity: var(--p-shot, 0);
   transition: opacity 360ms ease;
   pointer-events: none;
 }
 
-.brew-steam__wisp {
-  /* Base fill is a soft warm-grey so the wisps read against the cream
-     background (pure white would disappear). It darkens slightly through
-     the breathe animation, foreshadowing the chapter-6 morph to black. */
-  fill: rgba(80, 70, 80, 0.55);
-  filter: blur(2.8px) drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
-  animation: brew-steam-breathe 4.8s ease-in-out infinite alternate;
+.brew-mark__wisp {
+  /* Fill blends from warm-grey steam to near-black logo as --p-bag grows. */
+  fill: color-mix(in srgb,
+    rgb(80, 70, 80) calc((1 - var(--p-bag, 0)) * 100%),
+    #0a0a0a);
+  /* Position interpolated by --p-bag (viewBox is 0 -100 400 460, so
+     negative y values are valid above the cup):
+       p-bag=0: translate(170 -90)  - centred above the cup (steam)
+       p-bag=1: translate(106 -90)  - left of wordmark, same height (logo)
+     The y stays the same in both states, the wisps just slide left to
+     make room for the wordmark on their right. The wordmark fades in. */
+  transform:
+    translate(
+      calc((170 - 64 * var(--p-bag, 0)) * 1px),
+      -90px
+    )
+    scale(0.36);
+  /* Blur fades out as --p-bag approaches 1 - the wisp sharpens from soft
+     steam into a crisp logo mark. */
+  filter:
+    blur(calc((1 - var(--p-bag, 0)) * 2.6px))
+    drop-shadow(0 0 calc((1 - var(--p-bag, 0)) * 8px) rgba(255, 255, 255, 0.55));
+  animation: brew-mark-breathe 4.8s ease-in-out infinite alternate;
+  transition: fill 540ms ease, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes brew-steam-breathe {
-  0% {
-    opacity: 0.45;
-    filter: blur(3.6px) drop-shadow(0 0 4px rgba(255, 255, 255, 0.35));
-  }
-  50% {
-    opacity: 1;
-    filter: blur(2.2px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
-  }
-  100% {
-    opacity: 0.65;
-    filter: blur(3px) drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
-  }
+@keyframes brew-mark-breathe {
+  0%   { opacity: calc(0.55 + var(--p-bag, 0) * 0.45); }
+  50%  { opacity: 1; }
+  100% { opacity: calc(0.7 + var(--p-bag, 0) * 0.30); }
 }
 
-/* Logo state - same BCG wisps but solid black + wordmark. Drives the
-   chapter-6 "from steam to brand" reveal. */
-.brew-logo {
-  /* opacity already comes from the .brew-layer--bag rule */
-  pointer-events: none;
-}
-
-.brew-logo__icon {
-  fill: #0a0a0a;
-}
-
-.brew-logo__wordmark {
-  /* The wordmark slides in from the left so it visually emerges from the
-     wisps (which sit just to its left). The base transform is set on the
-     SVG element via the translate attribute; the CSS transform is added
-     via rotate-translate(none) trick so it composes in a single transform. */
+.brew-mark__wordmark {
+  /* Fades in at chapter 6 via --p-bag, sits to the right of the wisps
+     at their final logo position. The base y matches the centre of the
+     wisp icon (wisps span y=-90 to y=2.4, centre ~ y=-44) so the
+     wordmark cap-height aligns with the icon. */
   opacity: var(--p-bag, 0);
-  transition: opacity 480ms ease;
+  transform:
+    translate(168px, calc((-30 - 6 * var(--p-bag, 0)) * 1px));
+  transition: opacity 540ms ease, transform 540ms ease;
 }
 
 /* The cup ─────────────────────────────────────────────────────────────── */
