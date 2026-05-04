@@ -373,42 +373,31 @@
               </g>
 
               <!-- 4. SC shield etched on the side of the cup. Appears at chapter 5
-                   (Spielmann Consulting). Geometry copied verbatim from the official
-                   shield-large-dark.svg in the Spielmann brand kit:
-                     - shield outline with the signature flat banner top corners
-                     - large serif S (Georgia 165pt)
-                     - small serif c (Georgia 56pt) at the upper right
-                     - dash mark inside the lower shield area
+                   (Spielmann Consulting). The four paths are copied verbatim from
+                   the official Spielmann_Consulting_Kit/02_Icon/Vector/Icon.svg:
+                     - the open-serif "S" with deliberate gaps at the top and
+                       bottom (the signature SC mark, NOT a generic Georgia S)
+                     - the shield outline with banner top and tapered bottom
+                     - the small serif "c" sitting outside the shield at upper
+                       right (where the shield's right edge becomes its tab)
+                     - the dash rectangle BELOW the shield, fully outside it
                    Rendered in gold (#C49A2A) - the brand secondary colour - so it
                    reads as a refined gold-foil engraving on the dark espresso
-                   surface of the cup. The brew-layer--art opacity ramp ties the
-                   reveal to chapter 5 (Spielmann Consulting). -->
+                   surface of the cup. The icon's source viewBox is "1083 -12
+                   187 235" with the icon roughly centred at (1175, 105) in source
+                   coords; we scale by 0.42 and translate so the icon centres at
+                   (200, 230) in the cup viewBox. -->
               <g class="brew-layer brew-layer--art">
-                <g transform="translate(200 230) scale(0.42)" class="cup-shield">
-                  <!-- Soft outer glow for emboss feel -->
-                  <g opacity="0.35" filter="url(#cupShadow)">
-                    <path d="M -110,-130 L -110,-103 L -94,-103 L -94,-130 L 94,-130 L 94,-103 L 110,-103 L 110,-130 L 110,42 Q 110,132 0,158 Q -110,132 -110,42 Z"
-                          fill="none" stroke="rgba(0, 0, 0, 0.7)" stroke-width="2.8" stroke-linejoin="round"/>
-                  </g>
-
-                  <!-- Shield outline - gold engraving on the cup surface -->
-                  <path d="M -110,-130 L -110,-103 L -94,-103 L -94,-130 L 94,-130 L 94,-103 L 110,-103 L 110,-130 L 110,42 Q 110,132 0,158 Q -110,132 -110,42 Z"
-                        fill="none" stroke="#C49A2A" stroke-width="3.2" stroke-linejoin="round"
-                        opacity="0.95"/>
-
-                  <!-- Large serif S (Georgia 165pt) -->
-                  <text x="-8" y="38" font-family="Georgia, 'Times New Roman', Palatino, serif"
-                        font-size="165" font-weight="400" fill="#C49A2A" text-anchor="middle"
-                        opacity="0.95">S</text>
-
-                  <!-- Small serif c (Georgia 56pt) at the upper right -->
-                  <text x="58" y="14" font-family="Georgia, 'Times New Roman', Palatino, serif"
-                        font-size="56" font-weight="400" fill="#C49A2A" text-anchor="middle"
-                        opacity="0.95">c</text>
-
-                  <!-- Dash mark in the lower shield area -->
-                  <line x1="-16" y1="110" x2="16" y2="110" stroke="#C49A2A" stroke-width="3.2" stroke-linecap="round"
-                        opacity="0.95"/>
+                <g transform="translate(-389.5 178.5) scale(0.5)" class="cup-shield"
+                   fill="#C49A2A" opacity="0.95">
+                  <!-- The signature open-serif S of the SC mark -->
+                  <path d="M1172.32,137.03c-21.8,0-30.45-11.57-30.78-26.13h-6.87v30.56h6.87v-11.42c5.68,8.34,15.17,13.5,31.1,13.5,17.89,0,34.06-10.18,34.06-30.77,0-19.37-12.27-23.96-34.89-29.6-21.58-5.38-26.54-9.6-27.68-19.69-1.53-13.43,9.04-23.56,25.25-23.89,12.74-.26,26.89,6.4,27.49,19.9v4.8h6.87v-4.77h0s0,0,0,0v-23.89h-6.87v8.42c-5.27-6.73-13.71-10.92-27.96-10.95-17.63-.04-32.3,12.47-31.65,30.09.51,14,12.39,22.24,33.29,26.49,20.93,4.26,29.99,9.93,29.99,23.65,0,14.49-12.54,23.72-28.22,23.72Z"/>
+                  <!-- Shield outline with banner top and tapered bottom -->
+                  <path d="M1239.53,131.02c0,1.7-.26,3.34-.77,4.86-2.58,7.75-14.81,34.19-63.77,48.9-2.62.79-5.37.78-7.97-.02-17.72-5.44-49.43-18.56-62.8-45.25-1.08-2.16-1.66-4.58-1.66-7V4.94h136.87v48.88h4.94V4.94h8.37V0h-163.5v4.94h8.38v127.58c0,3.18.75,6.36,2.18,9.21,14.19,28.33,47.3,42.08,65.77,47.76,1.78.55,3.62.82,5.46.82s3.62-.26,5.38-.79c7.13-2.14,21.1-6.98,34.63-15.28,16.81-10.33,27.72-22.7,32.41-36.78.68-2.03,1.02-4.19,1.02-6.42v-27.54h-4.94v27.54Z"/>
+                  <!-- The small serif c at the upper right -->
+                  <path d="M1253.63,88.22c-2.9,3.56-7.19,5.59-11.78,5.59-8.37,0-15.17-6.78-15.17-15.12s6.81-15.12,15.17-15.12c4.4,0,8.58,1.9,11.47,5.22l3.73-3.24c-3.82-4.4-9.36-6.92-15.2-6.92-11.09,0-20.11,9-20.11,20.05s9.02,20.05,20.11,20.05c6.08,0,11.77-2.7,15.61-7.41l-3.83-3.12Z"/>
+                  <!-- Dash rectangle below the shield -->
+                  <rect x="1161.61" y="205.47" width="18.67" height="4.94"/>
                 </g>
               </g>
 
