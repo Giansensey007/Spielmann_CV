@@ -726,66 +726,72 @@ p {
 }
 
 /* Steam wisps above the cup */
+/* Steam rising above the cup - several wisps that animate upward continuously,
+   visible from the moment the espresso shot is poured (chapter 2). The steam
+   visually drifts toward the BCG logo on the right at chapter 6 (the BCG logo
+   ITSELF is steam wisps + wordmark, so the cup steam morphs into the brand). */
 .brew-build__steam {
   position: absolute;
   left: 50%;
-  top: 12%;
-  width: 120px;
-  height: 110px;
-  margin-left: -60px;
+  top: 4%;
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
   pointer-events: none;
-  opacity: calc(var(--p-shot, 0) * 0.85);
-  transition: opacity 320ms ease;
+  opacity: calc(var(--p-shot, 0) * 0.95);
+  transition: opacity 360ms ease;
+  z-index: 3;
 }
 
 .brew-build__steam span {
   position: absolute;
   display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  filter: blur(3px);
-  animation: brew-steam 4.6s ease-in-out infinite;
+  width: 18px;
+  height: 28px;
+  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+  filter: blur(4px);
+  animation: brew-steam 5.2s ease-in-out infinite;
+  transform-origin: 50% 100%;
 }
 
 .brew-build__steam span:nth-child(1) {
-  bottom: 0;
-  left: 30%;
-  width: 16px;
-  height: 16px;
+  bottom: 4px;
+  left: 28%;
+  width: 22px;
+  height: 32px;
   animation-delay: 0s;
 }
 
 .brew-build__steam span:nth-child(2) {
-  bottom: 16px;
+  bottom: 14px;
   left: 50%;
-  width: 22px;
-  height: 22px;
-  animation-delay: 0.6s;
+  width: 28px;
+  height: 40px;
+  animation-delay: 0.7s;
 }
 
 .brew-build__steam span:nth-child(3) {
-  bottom: 36px;
-  left: 36%;
-  width: 18px;
-  height: 18px;
-  animation-delay: 1.2s;
+  bottom: 4px;
+  left: 70%;
+  width: 22px;
+  height: 32px;
+  animation-delay: 1.4s;
 }
 
 .brew-build__steam span:nth-child(4) {
-  bottom: 52px;
-  left: 56%;
+  bottom: 36px;
+  left: 38%;
   width: 26px;
-  height: 26px;
-  animation-delay: 1.9s;
+  height: 38px;
+  animation-delay: 2.1s;
 }
 
 @keyframes brew-steam {
-  0%   { transform: translate3d(0, 0, 0) scale(0.85); opacity: 0; }
-  20%  { opacity: 0.65; }
-  60%  { opacity: 0.4; }
-  100% { transform: translate3d(0, -36px, 0) scale(1.4); opacity: 0; }
+  0%   { transform: translate3d(0, 0, 0) scale(0.6, 0.6); opacity: 0; }
+  15%  { opacity: 0.7; }
+  60%  { opacity: 0.45; }
+  100% { transform: translate3d(0, -120px, 0) scale(1.6, 2.2); opacity: 0; }
 }
 
 /* The cup ─────────────────────────────────────────────────────────────── */
@@ -855,7 +861,7 @@ p {
   --p: var(--p-stamp, 0);
   position: absolute;
   top: 28px;
-  right: 32px;
+  left: 24px;
   z-index: 4;
   padding: 8px 14px;
   border: 3px solid rgba(196, 154, 42, 0.92);

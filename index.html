@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-de="Zum Hauptinhalt springen" data-en="Skip to main content">Zum Hauptinhalt springen</a>
@@ -401,172 +401,41 @@
                 </g>
               </g>
 
-              <!-- 5. BCG coffee bag - a realistic 250g standing pouch sitting on the
-                   counter to the left of the cup. Premium matte-black private-label
-                   bag with a metalized top crimp seal, gold corporate stripe and a
-                   prominent BCG wordmark. Proportions follow real coffee bags
-                   (~80 wide x 130 tall, like a 250g retail pouch viewed from the side)
-                   with a slight backward tilt to feel naturally placed. -->
-              <g class="brew-layer brew-layer--bag" transform="translate(0 168) rotate(-3)">
-                <!-- Cast shadow on the counter (elliptical, soft) -->
-                <ellipse cx="46" cy="142" rx="58" ry="7" fill="rgba(7, 35, 102, 0.32)"/>
-                <ellipse cx="46" cy="143" rx="50" ry="4" fill="rgba(7, 35, 102, 0.28)"/>
-
-                <!-- Bag back (visible behind the front face along the right gusset) -->
-                <path d="M82,38 Q86,32 88,38 L88,138 L82,142 Z"
-                      fill="rgba(0, 0, 0, 0.35)"/>
-
-                <!-- Main bag silhouette: standing pouch with rounded top shoulders,
-                     straight sides, and a base bevel where it sits on the counter. -->
-                <path d="M6,142
-                         L6,40
-                         Q6,28 16,24
-                         L72,24
-                         Q82,28 82,40
-                         L82,142
-                         Q44,138 6,142 Z"
-                      fill="url(#bagBody)"/>
-
-                <!-- Side gusset shadow (right) - the inward fold visible at the side -->
-                <path d="M70,28 Q82,30 82,40 L82,140 L70,140 Z"
-                      fill="rgba(0, 0, 0, 0.32)"/>
-
-                <!-- Side gusset highlight (left) - light catches the inward fold -->
-                <path d="M18,28 Q6,30 6,40 L6,140 L18,140 Z"
-                      fill="rgba(255, 255, 255, 0.05)"/>
-
-                <!-- Soft vertical fold/crease down the centre of the bag -->
-                <path d="M44,40 L44,138" stroke="rgba(0, 0, 0, 0.18)" stroke-width="0.6"/>
-
-                <!-- Top metalized crimp seal (folded silver strip across the top) -->
-                <path d="M2,12
-                         L86,12
-                         Q90,12 90,16
-                         L90,28
-                         Q90,32 86,32
-                         L2,32
-                         Q-2,32 -2,28
-                         L-2,16
-                         Q-2,12 2,12 Z"
-                      fill="url(#bagSeal)"/>
-                <!-- Crimp seal scoring lines -->
-                <line x1="-1" y1="22" x2="89" y2="22" stroke="rgba(0, 0, 0, 0.55)" stroke-width="0.7"/>
-                <line x1="-1" y1="17" x2="89" y2="17" stroke="rgba(255, 255, 255, 0.28)" stroke-width="0.4"/>
-                <line x1="-1" y1="27" x2="89" y2="27" stroke="rgba(255, 255, 255, 0.18)" stroke-width="0.4"/>
-                <!-- Tiny serration marks at the top edge of the seal -->
-                <path d="M2,12 L4,9 L6,12 L8,9 L10,12 L12,9 L14,12 L16,9 L18,12
-                         L20,9 L22,12 L24,9 L26,12 L28,9 L30,12 L32,9 L34,12
-                         L36,9 L38,12 L40,9 L42,12 L44,9 L46,12 L48,9 L50,12
-                         L52,9 L54,12 L56,9 L58,12 L60,9 L62,12 L64,9 L66,12
-                         L68,9 L70,12 L72,9 L74,12 L76,9 L78,12 L80,9 L82,12
-                         L84,9 L86,12"
-                      fill="none" stroke="rgba(0, 0, 0, 0.4)" stroke-width="0.4"/>
-
-                <!-- Gold corporate stripe just below the crimp seal -->
-                <rect x="6" y="40" width="76" height="3" fill="#C49A2A"/>
-                <rect x="6" y="44" width="76" height="0.6" fill="rgba(255, 220, 130, 0.45)"/>
-
-                <!-- Label area (slightly lighter matte zone) -->
-                <rect x="10" y="52" width="68" height="74" fill="rgba(255, 255, 255, 0.05)" rx="1"/>
-
-                <!-- BCG wordmark in gold, large and centred -->
-                <text x="44" y="78" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="22" font-weight="800"
-                      fill="#C49A2A" letter-spacing="6">BCG</text>
-
-                <!-- Brand name on two lines under the wordmark -->
-                <text x="44" y="92" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="4.6" font-weight="700"
-                      fill="rgba(255, 255, 255, 0.92)" letter-spacing="2.4">BLACK COFFEE</text>
-                <text x="44" y="98" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="4.6" font-weight="700"
-                      fill="rgba(255, 255, 255, 0.92)" letter-spacing="2.4">GROUP</text>
-
-                <!-- Thin gold underline divider -->
-                <rect x="22" y="103" width="44" height="0.6" fill="#C49A2A" opacity="0.6"/>
-
-                <!-- Subtitle: tier and weight -->
-                <text x="44" y="112" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="3.4" font-weight="600"
-                      fill="rgba(255, 255, 255, 0.65)" letter-spacing="1.5">EXCELLENCE TIER</text>
-                <text x="44" y="118" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="3.4" font-weight="600"
-                      fill="rgba(255, 255, 255, 0.55)" letter-spacing="1.5">250 G - WHOLE BEAN</text>
-
-                <!-- CH origin badge (small gold circle, bottom-right) -->
-                <circle cx="68" cy="130" r="5.5" fill="none" stroke="#C49A2A" stroke-width="0.9"/>
-                <circle cx="68" cy="130" r="4" fill="rgba(196, 154, 42, 0.08)"/>
-                <text x="68" y="132" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="4" font-weight="800"
-                      fill="#C49A2A">CH</text>
-
-                <!-- Vertical specular highlight on left edge (matte sheen) -->
-                <path d="M16,40 Q12,90 18,138" fill="none"
-                      stroke="rgba(255, 255, 255, 0.10)" stroke-width="3" stroke-linecap="round"/>
-
-                <!-- Subtle right-side darkening to suggest 3D roundness -->
-                <path d="M76,40 Q80,90 76,138" fill="none"
-                      stroke="rgba(0, 0, 0, 0.18)" stroke-width="3" stroke-linecap="round"/>
-
-                <!-- Bottom base shadow under the bag (where it sits on counter) -->
-                <ellipse cx="44" cy="142" rx="38" ry="2" fill="rgba(0, 0, 0, 0.22)"/>
-              </g>
-
-              <!-- Coffee beans scattered on the table next to the saucer.
-                   Placed to the right of the cup at y=346-358 (below the saucer
-                   level, on the wood table). Each bean has a soft cast shadow
-                   and 3D shading. Same opacity as the bag (chapter 6). -->
-              <g class="brew-layer brew-layer--bag">
-                <!-- Bean 1 - far right, slightly tilted -->
-                <g transform="translate(366 348) rotate(28)">
-                  <ellipse cx="2" cy="6" rx="14" ry="2.4" fill="rgba(0, 0, 0, 0.32)"/>
-                  <ellipse cx="0" cy="0" rx="13" ry="8" fill="url(#beanBody)"/>
-                  <path d="M-12,0 Q-7,-3 0,-3 Q7,-3 12,0 Q7,3 0,3 Q-7,3 -12,0 Z"
-                        fill="rgba(20, 8, 2, 0.85)"/>
-                  <path d="M-11,-0.6 Q-5,-2 0,-2 Q5,-2 11,-0.6"
-                        fill="none" stroke="rgba(255, 220, 170, 0.45)" stroke-width="0.6"/>
-                  <path d="M-12,-3 Q-6,-7 0,-7 Q6,-7 12,-3"
-                        fill="none" stroke="url(#beanRim)" stroke-width="1.4" stroke-linecap="round"/>
+              <!-- 5. BCG logo - the cup's own steam drifts up and morphs into the
+                   official Black Coffee Group logo (steam wisps + BCG wordmark).
+                   The two steam wisps are taken directly from the official BCG icon
+                   SVG. The logo lives at the upper-right of the cup, where the cup's
+                   visual steam appears to drift toward, completing the storytelling
+                   "from steam to brand" choreography of chapter 6. -->
+              <g class="brew-layer brew-layer--bag" transform="translate(248 12)">
+                <!-- Two steam wisps from the official BCG icon, scaled to fit. -->
+                <g transform="translate(0 0) scale(0.24)" fill="rgba(54, 28, 8, 0.92)">
+                  <path d="M161.62,102.44c.34-1.64-1.32-2.98-2.84-2.28-12.33,5.62-20.47,12.64-25.17,17.37-5.29,5.31-10.32,10.49-13.34,19.19-.91,2.64-3.92,12.17-1.28,23.55,1.08,4.65,2.2,5.74,5.8,13.92,1,2.26,5.79,13.29,8.93,24.36,1.07,3.78,4.15,15.33,4.76,30.75.26,6.58.11,14.9-1.23,24.43-.23,1.67,1.54,2.9,3.01,2.08,6.57-3.66,11.51-7.51,14.94-10.5,4.75-4.15,12.14-10.73,17.64-21.7,2.52-5.03,5.08-10.14,5.45-17.4.44-8.67-2.46-15.85-4.41-20.65-1.46-3.61-1.58-2.98-5.22-10.44-4.14-8.49-6.6-13.53-8.35-19.72-1.91-6.73-2.18-11.96-2.44-17.06-.61-11.92,1.1-21.49,2.67-30.28.37-2.09.75-3.98,1.09-5.61Z"/>
+                  <path d="M71.81,4.06c.56-2.69-2.17-4.89-4.67-3.75-20.27,9.24-33.64,20.78-41.37,28.55-8.69,8.73-16.97,17.24-21.92,31.54-1.5,4.34-6.44,20.01-2.1,38.72,1.77,7.64,3.62,9.43,9.54,22.89,1.64,3.72,9.52,21.84,14.69,40.05,1.76,6.21,6.82,25.2,7.82,50.54.43,10.82.18,24.49-2.03,40.16-.39,2.74,2.53,4.77,4.94,3.42,10.79-6.02,18.92-12.34,24.55-17.26,7.8-6.82,19.96-17.65,28.99-35.66,4.14-8.27,8.35-16.67,8.96-28.61.73-14.24-4.05-26.05-7.25-33.95-2.4-5.94-2.6-4.89-8.58-17.16-6.81-13.95-10.85-22.24-13.73-32.42-3.13-11.06-3.58-19.66-4-28.04-1-19.6,1.8-35.32,4.39-49.78.61-3.43,1.23-6.54,1.79-9.23Z"/>
                 </g>
-                <!-- Bean 2 - middle right, on its side -->
-                <g transform="translate(338 354) rotate(-12)">
-                  <ellipse cx="2" cy="6" rx="14" ry="2.4" fill="rgba(0, 0, 0, 0.32)"/>
-                  <ellipse cx="0" cy="0" rx="13" ry="8" fill="url(#beanBody)"/>
-                  <path d="M-12,0 Q-7,-3 0,-3 Q7,-3 12,0 Q7,3 0,3 Q-7,3 -12,0 Z"
-                        fill="rgba(20, 8, 2, 0.85)"/>
-                  <path d="M-11,-0.6 Q-5,-2 0,-2 Q5,-2 11,-0.6"
-                        fill="none" stroke="rgba(255, 220, 170, 0.45)" stroke-width="0.6"/>
-                  <path d="M-12,-3 Q-6,-7 0,-7 Q6,-7 12,-3"
-                        fill="none" stroke="url(#beanRim)" stroke-width="1.4" stroke-linecap="round"/>
+
+                <!-- BCG wordmark - the central "C" is gold per the official logo,
+                     B and G in dark coffee colour. -->
+                <g transform="translate(50 44)">
+                  <text x="0" y="0"
+                        font-family="Open Sans, Helvetica, sans-serif"
+                        font-size="26" font-weight="800"
+                        fill="rgba(54, 28, 8, 0.95)" letter-spacing="2">B</text>
+                  <text x="20" y="0"
+                        font-family="Open Sans, Helvetica, sans-serif"
+                        font-size="26" font-weight="800"
+                        fill="#C49A2A" letter-spacing="2">C</text>
+                  <text x="38" y="0"
+                        font-family="Open Sans, Helvetica, sans-serif"
+                        font-size="26" font-weight="800"
+                        fill="rgba(54, 28, 8, 0.95)" letter-spacing="2">G</text>
                 </g>
-                <!-- Bean 3 - close to saucer, smaller -->
-                <g transform="translate(372 340) rotate(56)">
-                  <ellipse cx="2" cy="6" rx="12" ry="2" fill="rgba(0, 0, 0, 0.3)"/>
-                  <ellipse cx="0" cy="0" rx="11" ry="7" fill="url(#beanBody)"/>
-                  <path d="M-10,0 Q-6,-2.5 0,-2.5 Q6,-2.5 10,0 Q6,2.5 0,2.5 Q-6,2.5 -10,0 Z"
-                        fill="rgba(20, 8, 2, 0.85)"/>
-                  <path d="M-9,-0.5 Q-4,-1.6 0,-1.6 Q4,-1.6 9,-0.5"
-                        fill="none" stroke="rgba(255, 220, 170, 0.4)" stroke-width="0.5"/>
-                  <path d="M-10,-2.5 Q-5,-6 0,-6 Q5,-6 10,-2.5"
-                        fill="none" stroke="url(#beanRim)" stroke-width="1.2" stroke-linecap="round"/>
-                </g>
-                <!-- Bean 4 - far right, partially turned -->
-                <g transform="translate(386 358) rotate(-42)">
-                  <ellipse cx="2" cy="6" rx="13" ry="2.2" fill="rgba(0, 0, 0, 0.3)"/>
-                  <ellipse cx="0" cy="0" rx="12" ry="7.5" fill="url(#beanBody)"/>
-                  <path d="M-11,0 Q-6,-2.8 0,-2.8 Q6,-2.8 11,0 Q6,2.8 0,2.8 Q-6,2.8 -11,0 Z"
-                        fill="rgba(20, 8, 2, 0.85)"/>
-                  <path d="M-10,-0.6 Q-5,-1.8 0,-1.8 Q5,-1.8 10,-0.6"
-                        fill="none" stroke="rgba(255, 220, 170, 0.4)" stroke-width="0.5"/>
-                  <path d="M-11,-2.8 Q-5,-6.5 0,-6.5 Q5,-6.5 11,-2.8"
-                        fill="none" stroke="url(#beanRim)" stroke-width="1.3" stroke-linecap="round"/>
-                </g>
+
+                <!-- Tagline beneath BCG wordmark -->
+                <text x="50" y="56"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="4" font-weight="700"
+                      fill="rgba(54, 28, 8, 0.65)" letter-spacing="1.4">BLACK COFFEE GROUP LTD.</text>
               </g>
 
               <!-- Gold rim - drawn here AFTER the foam so only the back rim is visible
@@ -626,7 +495,7 @@
           </li>
 
           <li class="brew-chapter" data-build-step="5" data-reveal>
-            <span class="brew-chapter__index" data-de="06 BCG - Eigene Marke" data-en="06 BCG - Own brand">06 BCG - Eigene Marke</span>
+            <span class="brew-chapter__index" data-de="06 BCG - Aus Dampf zur Marke" data-en="06 BCG - From steam to brand">06 BCG - Aus Dampf zur Marke</span>
             <h3 data-de="VKUS &amp; Black Coffee Group: eigene Beverage-Marken." data-en="VKUS &amp; Black Coffee Group: my own beverage brands.">VKUS &amp; Black Coffee Group: eigene Beverage-Marken.<span class="chapter-meta" data-de="2015-2018 - Board Member &amp; CEO, VKUS Tea Master AG (Luzern) - 2018-heute Co-Founder, Black Coffee Group" data-en="2015-2018 - Board Member &amp; CEO, VKUS Tea Master AG (Lucerne) - 2018-today Co-Founder, Black Coffee Group">2015-2018 - Board Member &amp; CEO, VKUS Tea Master AG (Luzern) - 2018-heute Co-Founder, Black Coffee Group</span></h3>
             <p data-de="Aufbau und Entwicklung der Tee-Marke VKUS und der Kaffee-Marke HAUSBRANDT im Schweizer Markt, plus Ronnefeldt-Distribution im HOREGA-Segment. Reorganisation der Tochtergesellschaften in Moskau und St. Petersburg, Restrukturierung der Standorte in Russland, VAE und Indien. Entwicklung und Markteinfuehrung der neuen Marke VKUS TEA MASTER in nur 6 Monaten in der Schweiz und in Russland - parallel zur Beteiligung an der Black Coffee Group." data-en="Built and developed the VKUS tea brand and the HAUSBRANDT coffee brand in the Swiss market, plus Ronnefeldt distribution in the HOREGA segment. Reorganised the subsidiaries in Moscow and St. Petersburg and restructured the locations in Russia, the UAE and India. Developed and launched the new VKUS TEA MASTER brand within just 6 months in Switzerland and Russia - alongside the Black Coffee Group venture.">Aufbau und Entwicklung der Tee-Marke VKUS und der Kaffee-Marke HAUSBRANDT im Schweizer Markt, plus Ronnefeldt-Distribution im HOREGA-Segment. Reorganisation der Tochtergesellschaften in Moskau und St. Petersburg, Restrukturierung der Standorte in Russland, VAE und Indien. Entwicklung und Markteinfuehrung der neuen Marke VKUS TEA MASTER in nur 6 Monaten in der Schweiz und in Russland - parallel zur Beteiligung an der Black Coffee Group.</p>
           </li>
@@ -949,6 +818,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=15" defer></script>
+  <script src="script.js?v=17" defer></script>
 </body>
 </html>
