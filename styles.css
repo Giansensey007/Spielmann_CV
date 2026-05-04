@@ -782,12 +782,12 @@ p {
 
 .brew-mark__wordmark {
   /* Fades in at chapter 6 via --p-bag, sits to the right of the wisps
-     at their final logo position. The base y matches the centre of the
-     wisp icon (wisps span y=-90 to y=2.4, centre ~ y=-44) so the
-     wordmark cap-height aligns with the icon. */
+     at their final logo position. Wisps end at x=170 (translate 106 +
+     scale(0.36) * 178.33 width). Wordmark starts at x=180 leaving a
+     comfortable 10-unit gap so neither shape overlaps the other. */
   opacity: var(--p-bag, 0);
   transform:
-    translate(168px, calc((-30 - 6 * var(--p-bag, 0)) * 1px));
+    translate(180px, calc((-30 - 6 * var(--p-bag, 0)) * 1px));
   transition: opacity 540ms ease, transform 540ms ease;
 }
 

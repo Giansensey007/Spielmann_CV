@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-de="Zum Hauptinhalt springen" data-en="Skip to main content">Zum Hauptinhalt springen</a>
@@ -296,11 +296,6 @@
                 <!-- Vertical highlight (left) - light catches the curve -->
                 <path d="M120,128 Q116,200 134,266 L142,264 Q126,200 132,130 Z"
                       fill="rgba(255, 255, 255, 0.55)"/>
-                <!-- Subtle SC monogram on the side of the cup -->
-                <text x="200" y="240" text-anchor="middle"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="22" font-weight="800"
-                      fill="rgba(7, 35, 102, 0.10)" letter-spacing="6">SC</text>
               </g>
 
               <!-- Inner cup wall - thin dark sliver only at the very rim (the foam dome
@@ -377,24 +372,38 @@
                       fill="rgba(196, 154, 80, 0.18)"/>
               </g>
 
-              <!-- 4. Latte art - SC monogram drawn ON the foam dome, barista-etched.
-                   Appears at chapter 5 (Spielmann Consulting). -->
+              <!-- 4. SC shield etched on the side of the cup. Appears at chapter 5
+                   (Spielmann Consulting). Drawn in gold ink at low opacity so it
+                   reads as a subtle brand engraving on the cup body, matching the
+                   real Spielmann Consulting shield logo (shield outline with serif
+                   "S", small "c" and a dash beneath). The shield is rendered AFTER
+                   the brew layers so it sits on top of the espresso fill but below
+                   the foam dome and external steam/logo elements. -->
               <g class="brew-layer brew-layer--art">
-                <g transform="translate(200 108)" class="art-monogram">
-                  <text x="0" y="0" text-anchor="middle"
-                        font-family="Open Sans, Helvetica, sans-serif"
-                        font-size="32" font-weight="800"
-                        fill="rgba(40, 20, 6, 0.22)" letter-spacing="6"
-                        dx="0.8" dy="1">SC</text>
-                  <text x="0" y="0" text-anchor="middle"
-                        font-family="Open Sans, Helvetica, sans-serif"
-                        font-size="32" font-weight="800"
-                        fill="rgba(54, 28, 8, 0.95)" letter-spacing="6"
-                        stroke="rgba(28, 14, 4, 0.82)" stroke-width="0.6">SC</text>
-                  <text x="0" y="-0.6" text-anchor="middle"
-                        font-family="Open Sans, Helvetica, sans-serif"
-                        font-size="32" font-weight="800"
-                        fill="rgba(255, 240, 210, 0.3)" letter-spacing="6">SC</text>
+                <g transform="translate(200 224) scale(0.30)" class="cup-shield">
+                  <!-- Drop shadow for depth (slight emboss feeling) -->
+                  <g transform="translate(1 2)" opacity="0.4">
+                    <path d="M -110,-130 L -110,-103 L -94,-103 L -94,-130 L 94,-130 L 94,-103 L 110,-103 L 110,-130 L 110,42 Q 110,132 0,158 Q -110,132 -110,42 Z"
+                          fill="none" stroke="rgba(0, 0, 0, 0.55)" stroke-width="3" stroke-linejoin="round"/>
+                    <text x="-8" y="38" font-family="Georgia, 'Times New Roman', Palatino, serif"
+                          font-size="165" font-weight="400" fill="rgba(0, 0, 0, 0.55)" text-anchor="middle">S</text>
+                    <text x="58" y="14" font-family="Georgia, 'Times New Roman', Palatino, serif"
+                          font-size="56" font-weight="400" fill="rgba(0, 0, 0, 0.55)" text-anchor="middle">c</text>
+                    <line x1="-16" y1="110" x2="16" y2="110" stroke="rgba(0, 0, 0, 0.55)" stroke-width="3" stroke-linecap="round"/>
+                  </g>
+
+                  <!-- Main shield - gold ink etched into the dark cup surface -->
+                  <path d="M -110,-130 L -110,-103 L -94,-103 L -94,-130 L 94,-130 L 94,-103 L 110,-103 L 110,-130 L 110,42 Q 110,132 0,158 Q -110,132 -110,42 Z"
+                        fill="none" stroke="#C49A2A" stroke-width="3.2" stroke-linejoin="round"
+                        opacity="0.92"/>
+                  <text x="-8" y="38" font-family="Georgia, 'Times New Roman', Palatino, serif"
+                        font-size="165" font-weight="400" fill="#C49A2A" text-anchor="middle"
+                        opacity="0.95">S</text>
+                  <text x="58" y="14" font-family="Georgia, 'Times New Roman', Palatino, serif"
+                        font-size="56" font-weight="400" fill="#C49A2A" text-anchor="middle"
+                        opacity="0.95">c</text>
+                  <line x1="-16" y1="110" x2="16" y2="110" stroke="#C49A2A" stroke-width="3.2" stroke-linecap="round"
+                        opacity="0.92"/>
                 </g>
               </g>
 
@@ -490,7 +499,7 @@
           </li>
 
           <li class="brew-chapter" data-build-step="4" data-reveal>
-            <span class="brew-chapter__index" data-de="05 Latte-Art SC" data-en="05 Latte art SC">05 Latte-Art SC</span>
+            <span class="brew-chapter__index" data-de="05 Eigene Marke - SC" data-en="05 Own brand - SC">05 Eigene Marke - SC</span>
             <h3 data-de="Eigene Beratungs- und M&amp;A-Boutique." data-en="My own consulting and M&amp;A boutique.">Eigene Beratungs- und M&amp;A-Boutique.<span class="chapter-meta" data-de="2018 - heute - Chairman and Owner, Spielmann Consulting AG (Vaduz)" data-en="2018 - present - Chairman and Owner, Spielmann Consulting AG (Vaduz)">2018 - heute - Chairman and Owner, Spielmann Consulting AG (Vaduz)</span></h3>
             <p data-de="Verschiedene Consulting-Mandate, Verwaltungsrats- und Administrationsmandate. Kerngeschaeft: Corporate Strategy, Risk-Management-Strategien, Produktstrategien und M&amp;A. Versprechen: «Nicht einfacher, sondern besser!»" data-en="Various consulting mandates, board of directors' mandates and administration mandates. Core business: corporate strategy, risk management strategies, product strategies and M&amp;A. Promise: «Not just simpler, but better!»">Verschiedene Consulting-Mandate, Verwaltungsrats- und Administrationsmandate. Kerngeschaeft: Corporate Strategy, Risk-Management-Strategien, Produktstrategien und M&amp;A. Versprechen: «Nicht einfacher, sondern besser!»</p>
           </li>
