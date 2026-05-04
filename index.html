@@ -202,6 +202,21 @@
                   <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
 
+                <!-- Coffee bag body: matte black with subtle vertical shading -->
+                <linearGradient id="bagBody" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#2a2532"/>
+                  <stop offset=".25" stop-color="#1a1622"/>
+                  <stop offset=".75" stop-color="#15101a"/>
+                  <stop offset="1" stop-color="#0a0710"/>
+                </linearGradient>
+
+                <!-- Bag metalized seal at the top: silver-grey crimp -->
+                <linearGradient id="bagSeal" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#bfc4cd"/>
+                  <stop offset=".5" stop-color="#8a8f99"/>
+                  <stop offset="1" stop-color="#5a5f6b"/>
+                </linearGradient>
+
                 <!-- Soft drop shadow under the cup -->
                 <filter id="cupShadow" x="-20%" y="-10%" width="140%" height="140%">
                   <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
@@ -374,52 +389,63 @@
                   </g>
                 </g>
 
-                <!-- 5. BCG coffee beans floating on the foam.
-                     Three beans, pronounced 3D shape: warm-roast brown body with a deep
-                     central groove (seam), specular rim highlight on the upper edge, and
-                     a soft cast shadow on the foam below. Beans are large enough to read
-                     clearly at any cup size. -->
-                <g class="brew-layer brew-layer--beans">
-                  <!-- Bean 1 (left, sitting on the foam at the back) -->
-                  <g class="bean" transform="translate(146 112) rotate(-28)">
-                    <ellipse cx="2" cy="11" rx="22" ry="4" fill="rgba(40, 18, 6, 0.55)"/>
-                    <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#beanBody)"/>
-                    <path d="M-21,-1 Q-14,-14 0,-14 Q14,-14 21,-1 Q14,1.4 0,1.4 Q-14,1.4 -21,-1 Z"
-                          fill="rgba(0, 0, 0, 0.28)"/>
-                    <path d="M-18,0 Q-10,-4 0,-4 Q10,-4 18,0 Q10,4 0,4 Q-10,4 -18,0 Z"
-                          fill="rgba(20, 8, 2, 0.92)"/>
-                    <path d="M-17,-0.8 Q-8,-2.8 0,-2.8 Q8,-2.8 17,-0.8"
-                          fill="none" stroke="rgba(255, 220, 170, 0.5)" stroke-width="0.9"/>
-                    <path d="M-19,-4.5 Q-11,-12 0,-12 Q11,-12 19,-4.5"
-                          fill="none" stroke="url(#beanRim)" stroke-width="2.4" stroke-linecap="round"/>
-                  </g>
-                  <!-- Bean 2 (right, sitting on the foam at the back) -->
-                  <g class="bean" transform="translate(254 110) rotate(30)">
-                    <ellipse cx="2" cy="11" rx="22" ry="4" fill="rgba(40, 18, 6, 0.55)"/>
-                    <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#beanBody)"/>
-                    <path d="M-21,-1 Q-14,-14 0,-14 Q14,-14 21,-1 Q14,1.4 0,1.4 Q-14,1.4 -21,-1 Z"
-                          fill="rgba(0, 0, 0, 0.28)"/>
-                    <path d="M-18,0 Q-10,-4 0,-4 Q10,-4 18,0 Q10,4 0,4 Q-10,4 -18,0 Z"
-                          fill="rgba(20, 8, 2, 0.92)"/>
-                    <path d="M-17,-0.8 Q-8,-2.8 0,-2.8 Q8,-2.8 17,-0.8"
-                          fill="none" stroke="rgba(255, 220, 170, 0.5)" stroke-width="0.9"/>
-                    <path d="M-19,-4.5 Q-11,-12 0,-12 Q11,-12 19,-4.5"
-                          fill="none" stroke="url(#beanRim)" stroke-width="2.4" stroke-linecap="round"/>
-                  </g>
-                  <!-- Bean 3 (front-center, lower on the foam dome) -->
-                  <g class="bean" transform="translate(200 152) rotate(-10)">
-                    <ellipse cx="2" cy="11" rx="22" ry="4" fill="rgba(40, 18, 6, 0.55)"/>
-                    <ellipse cx="0" cy="0" rx="22" ry="14" fill="url(#beanBody)"/>
-                    <path d="M-21,-1 Q-14,-14 0,-14 Q14,-14 21,-1 Q14,1.4 0,1.4 Q-14,1.4 -21,-1 Z"
-                          fill="rgba(0, 0, 0, 0.28)"/>
-                    <path d="M-18,0 Q-10,-4 0,-4 Q10,-4 18,0 Q10,4 0,4 Q-10,4 -18,0 Z"
-                          fill="rgba(20, 8, 2, 0.92)"/>
-                    <path d="M-17,-0.8 Q-8,-2.8 0,-2.8 Q8,-2.8 17,-0.8"
-                          fill="none" stroke="rgba(255, 220, 170, 0.5)" stroke-width="0.9"/>
-                    <path d="M-19,-4.5 Q-11,-12 0,-12 Q11,-12 19,-4.5"
-                          fill="none" stroke="url(#beanRim)" stroke-width="2.4" stroke-linecap="round"/>
-                  </g>
-                </g>
+              </g>
+
+              <!-- 5. BCG coffee bag - sits BEHIND-LEFT of the cup on the counter,
+                   so the cup remains the hero. Premium matte-black private-label
+                   bag with a metalized top closure, gold "BCG" wordmark, and a
+                   thin gold corporate stripe. The bag stands ~118px tall and is
+                   slightly tilted, positioned so its base aligns with the saucer. -->
+              <g class="brew-layer brew-layer--bag" transform="translate(8 188) rotate(-4)">
+                <!-- Cast shadow under the bag on the counter -->
+                <ellipse cx="42" cy="120" rx="50" ry="5" fill="rgba(7, 35, 102, 0.32)"/>
+                <!-- Bag silhouette: standing pouch with shoulders, slightly narrower at top -->
+                <path d="M2,120 L2,30 Q2,20 10,16 L74,16 Q82,20 82,30 L82,120 Z"
+                      fill="url(#bagBody)"/>
+                <!-- Side gusset shadow (right) -->
+                <path d="M68,18 Q82,20 82,30 L82,120 L68,120 Z"
+                      fill="rgba(0, 0, 0, 0.28)"/>
+                <!-- Side gusset highlight (left) -->
+                <path d="M16,18 Q2,20 2,30 L2,120 L16,120 Z"
+                      fill="rgba(255, 255, 255, 0.05)"/>
+                <!-- Top metalized seal (folded crimped strip) -->
+                <path d="M0,6 L84,6 Q88,6 88,10 L88,20 Q88,24 84,24 L0,24 Q-4,24 -4,20 L-4,10 Q-4,6 0,6 Z"
+                      fill="url(#bagSeal)"/>
+                <!-- Seal crimp lines -->
+                <line x1="-2" y1="15" x2="86" y2="15" stroke="rgba(0, 0, 0, 0.55)" stroke-width="0.6"/>
+                <line x1="-2" y1="11" x2="86" y2="11" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.4"/>
+                <line x1="-2" y1="19" x2="86" y2="19" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.4"/>
+                <!-- Gold corporate stripe near the top of the bag body -->
+                <rect x="2" y="32" width="80" height="2.4" fill="#C49A2A"/>
+                <!-- Label area (slight matte sheen) -->
+                <rect x="6" y="42" width="72" height="62" fill="rgba(255, 255, 255, 0.04)"/>
+                <!-- BCG wordmark in gold, large -->
+                <text x="42" y="68" text-anchor="middle"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="18" font-weight="800"
+                      fill="#C49A2A" letter-spacing="5">BCG</text>
+                <!-- Subtitle: brand name in two lines -->
+                <text x="42" y="82" text-anchor="middle"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="4" font-weight="700"
+                      fill="rgba(255, 255, 255, 0.85)" letter-spacing="2">BLACK COFFEE</text>
+                <text x="42" y="88" text-anchor="middle"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="4" font-weight="700"
+                      fill="rgba(255, 255, 255, 0.85)" letter-spacing="2">GROUP</text>
+                <text x="42" y="98" text-anchor="middle"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="3.2" font-weight="600"
+                      fill="rgba(255, 255, 255, 0.55)" letter-spacing="1.2">EXCELLENCE TIER - 250G</text>
+                <!-- CH origin badge (small gold circle) -->
+                <circle cx="68" cy="110" r="5" fill="none" stroke="#C49A2A" stroke-width="0.8"/>
+                <text x="68" y="112" text-anchor="middle"
+                      font-family="Open Sans, Helvetica, sans-serif"
+                      font-size="3.6" font-weight="800"
+                      fill="#C49A2A">CH</text>
+                <!-- Subtle vertical specular highlight on left edge for matte sheen -->
+                <path d="M14,32 Q10,70 16,118" fill="none"
+                      stroke="rgba(255, 255, 255, 0.10)" stroke-width="3" stroke-linecap="round"/>
               </g>
 
               <!-- Gold rim (drawn last so it's on top of inner wall and any liquid spike) -->
@@ -479,7 +505,7 @@
           </li>
 
           <li class="brew-chapter" data-build-step="5" data-reveal>
-            <span class="brew-chapter__index" data-de="06 Bohnen - Black Coffee Group" data-en="06 Beans - Black Coffee Group">06 Bohnen - Black Coffee Group</span>
+            <span class="brew-chapter__index" data-de="06 BCG - Eigene Marke" data-en="06 BCG - Own brand">06 BCG - Eigene Marke</span>
             <h3 data-de="Co-Founder einer Premium-Beverage-Plattform." data-en="Co-founder of a premium beverage platform.">Co-Founder einer Premium-Beverage-Plattform.<span class="chapter-meta" data-de="2018-heute - Chairman and Co-Founder, Black Coffee Group Ltd." data-en="2018-today - Chairman and Co-Founder, Black Coffee Group Ltd.">2018-heute - Chairman and Co-Founder, Black Coffee Group Ltd.</span></h3>
             <p data-de="Active Investor und Producer fuer Excellence-Tier-Marken in Coffee, Tee und Spices. Private-Label-Partnerschaften mit Cuisine Barista und Ducati Motor Holding, Pipeline mit Mercedes-Benz. Eigene Boutiquen, europaeische Produktion, Distribution in Deutschland, Benelux und Skandinavien." data-en="Active investor and producer for excellence-tier brands in coffee, tea and spices. Private-label partnerships with Cuisine Barista and Ducati Motor Holding, with a Mercedes-Benz pipeline. Own boutiques, European production and distribution across Germany, Benelux and Scandinavia.">Active Investor und Producer fuer Excellence-Tier-Marken in Coffee, Tee und Spices. Private-Label-Partnerschaften mit Cuisine Barista und Ducati Motor Holding, Pipeline mit Mercedes-Benz. Eigene Boutiquen, europaeische Produktion, Distribution in Deutschland, Benelux und Skandinavien.</p>
           </li>

@@ -11,16 +11,23 @@
   const sub = (progress, start, end) => ease(clamp((progress - start) / (end - start)));
 
   /* -- Brew progress windows -------------------------------------------------
-   * Seven brew stages, each with its own progress window across the whole
-   * scrolled centerpiece. The stages are layered like a real espresso:
-   *   cup -> espresso shot -> crema -> milk -> latte art -> beans -> stamp */
+   * The career has 7 chapters, mapped to chapter index / 6 for progress 0..1:
+   *   ch 0 = 0.00  Tasse - Pub Operator-DNA            -> empty cup
+   *   ch 1 = 0.17  Espresso-Shot - SBB Speisewagen     -> espresso fills
+   *   ch 2 = 0.33  Crema - Strategischer Einkauf       -> crema cap
+   *   ch 3 = 0.50  Milchschaum - Segafredo CEO         -> milk foam
+   *   ch 4 = 0.67  Latte-Art SC - Spielmann Consulting -> SC monogram
+   *   ch 5 = 0.83  Coffee Bag - Black Coffee Group     -> BCG bag appears
+   *   ch 6 = 1.00  Servito - Today / Angel Investor    -> gold stamp
+   * Each stage's window peaks around its chapter's progress value, and starts
+   * shortly before so it begins to animate as the chapter card enters view. */
   const stageRanges = {
-    shot:   [0.04, 0.22],
-    crema:  [0.20, 0.36],
-    milk:   [0.34, 0.52],
-    art:    [0.52, 0.68],
-    beans:  [0.66, 0.82],
-    stamp:  [0.82, 0.98],
+    shot:   [0.06, 0.22],
+    crema:  [0.22, 0.38],
+    milk:   [0.38, 0.55],
+    art:    [0.55, 0.72],
+    bag:    [0.72, 0.88],
+    stamp:  [0.88, 1.00],
   };
 
   const build = document.querySelector("[data-build]");
@@ -36,12 +43,32 @@
     buildChapters.forEach((c, i) => c.classList.toggle("is-active", i === index));
   }
 
-  function buildProgress() {
-    if (!build) return 0;
-    const rect = build.getBoundingClientRect();
+  /* Chapter-anchored progress: returns a continuous 0..1 value where each
+   * chapter's CENTER passing the viewport's vertical midpoint maps to
+   * chapterIndex / (totalChapters - 1). Between chapters the value is
+   * linearly interpolated so the brew animates smoothly between cards. */
+  function chapterProgress() {
+    if (!buildChapters.length) return 0;
+    const n = buildChapters.length;
+    if (n === 1) return 1;
     const vh = window.innerHeight || document.documentElement.clientHeight;
-    const total = Math.max(1, rect.height - vh * 0.7);
-    return clamp((vh * 0.5 - rect.top) / total);
+    const target = vh * 0.5;
+    const centers = buildChapters.map((c) => {
+      const r = c.getBoundingClientRect();
+      return r.top + r.height / 2;
+    });
+
+    if (target <= centers[0]) return 0;
+    if (target >= centers[n - 1]) return 1;
+
+    for (let i = 0; i < n - 1; i++) {
+      if (target >= centers[i] && target <= centers[i + 1]) {
+        const span = centers[i + 1] - centers[i];
+        const frac = span > 0 ? (target - centers[i]) / span : 0;
+        return (i + frac) / (n - 1);
+      }
+    }
+    return 0;
   }
 
   function activeChapterIndex() {
@@ -77,11 +104,7 @@
     if (!build) return;
     const reduced = motionQuery.matches;
     const idx = activeChapterIndex();
-    const raw = buildProgress();
-    const chapterProgress = buildChapters.length <= 1
-      ? 1
-      : idx / (buildChapters.length - 1);
-    let progress = reduced ? 1 : Math.max(raw, chapterProgress * 0.95);
+    let progress = reduced ? 1 : chapterProgress();
     if (forcedBrew !== null) progress = forcedBrew;
 
     build.style.setProperty("--build-progress", progress.toFixed(3));
