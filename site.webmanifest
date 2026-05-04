@@ -1,0 +1,17 @@
+{
+  "name": "Oliver Michael Spielmann",
+  "short_name": "Oliver Spielmann",
+  "description": "Chairman, Founder, Angel Investor und Board Member - Spielmann Consulting AG, Black Coffee Group und weitere.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#072366",
+  "theme_color": "#072366",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
