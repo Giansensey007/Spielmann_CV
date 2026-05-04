@@ -373,37 +373,42 @@
               </g>
 
               <!-- 4. SC shield etched on the side of the cup. Appears at chapter 5
-                   (Spielmann Consulting). Drawn in gold ink at low opacity so it
-                   reads as a subtle brand engraving on the cup body, matching the
-                   real Spielmann Consulting shield logo (shield outline with serif
-                   "S", small "c" and a dash beneath). The shield is rendered AFTER
-                   the brew layers so it sits on top of the espresso fill but below
-                   the foam dome and external steam/logo elements. -->
+                   (Spielmann Consulting). Geometry copied verbatim from the official
+                   shield-large-dark.svg in the Spielmann brand kit:
+                     - shield outline with the signature flat banner top corners
+                     - large serif S (Georgia 165pt)
+                     - small serif c (Georgia 56pt) at the upper right
+                     - dash mark inside the lower shield area
+                   Rendered in gold (#C49A2A) - the brand secondary colour - so it
+                   reads as a refined gold-foil engraving on the dark espresso
+                   surface of the cup. The brew-layer--art opacity ramp ties the
+                   reveal to chapter 5 (Spielmann Consulting). -->
               <g class="brew-layer brew-layer--art">
-                <g transform="translate(200 224) scale(0.30)" class="cup-shield">
-                  <!-- Drop shadow for depth (slight emboss feeling) -->
-                  <g transform="translate(1 2)" opacity="0.4">
+                <g transform="translate(200 230) scale(0.42)" class="cup-shield">
+                  <!-- Soft outer glow for emboss feel -->
+                  <g opacity="0.35" filter="url(#cupShadow)">
                     <path d="M -110,-130 L -110,-103 L -94,-103 L -94,-130 L 94,-130 L 94,-103 L 110,-103 L 110,-130 L 110,42 Q 110,132 0,158 Q -110,132 -110,42 Z"
-                          fill="none" stroke="rgba(0, 0, 0, 0.55)" stroke-width="3" stroke-linejoin="round"/>
-                    <text x="-8" y="38" font-family="Georgia, 'Times New Roman', Palatino, serif"
-                          font-size="165" font-weight="400" fill="rgba(0, 0, 0, 0.55)" text-anchor="middle">S</text>
-                    <text x="58" y="14" font-family="Georgia, 'Times New Roman', Palatino, serif"
-                          font-size="56" font-weight="400" fill="rgba(0, 0, 0, 0.55)" text-anchor="middle">c</text>
-                    <line x1="-16" y1="110" x2="16" y2="110" stroke="rgba(0, 0, 0, 0.55)" stroke-width="3" stroke-linecap="round"/>
+                          fill="none" stroke="rgba(0, 0, 0, 0.7)" stroke-width="2.8" stroke-linejoin="round"/>
                   </g>
 
-                  <!-- Main shield - gold ink etched into the dark cup surface -->
+                  <!-- Shield outline - gold engraving on the cup surface -->
                   <path d="M -110,-130 L -110,-103 L -94,-103 L -94,-130 L 94,-130 L 94,-103 L 110,-103 L 110,-130 L 110,42 Q 110,132 0,158 Q -110,132 -110,42 Z"
                         fill="none" stroke="#C49A2A" stroke-width="3.2" stroke-linejoin="round"
-                        opacity="0.92"/>
+                        opacity="0.95"/>
+
+                  <!-- Large serif S (Georgia 165pt) -->
                   <text x="-8" y="38" font-family="Georgia, 'Times New Roman', Palatino, serif"
                         font-size="165" font-weight="400" fill="#C49A2A" text-anchor="middle"
                         opacity="0.95">S</text>
+
+                  <!-- Small serif c (Georgia 56pt) at the upper right -->
                   <text x="58" y="14" font-family="Georgia, 'Times New Roman', Palatino, serif"
                         font-size="56" font-weight="400" fill="#C49A2A" text-anchor="middle"
                         opacity="0.95">c</text>
+
+                  <!-- Dash mark in the lower shield area -->
                   <line x1="-16" y1="110" x2="16" y2="110" stroke="#C49A2A" stroke-width="3.2" stroke-linecap="round"
-                        opacity="0.92"/>
+                        opacity="0.95"/>
                 </g>
               </g>
 
