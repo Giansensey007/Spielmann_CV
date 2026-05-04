@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Oliver Michael Spielmann - Chairman, Founder, Angel Investor">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Oliver Michael Spielmann - Agency Executive, NED, Angel Investor">
   <defs>
     <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="#0a2c80"/>
@@ -29,10 +29,10 @@
     <ellipse cx="100" cy="22" rx="6" ry="14" fill="#FFFFFF" opacity="0.32"/>
     <ellipse cx="138" cy="34" rx="5" ry="12" fill="#FFFFFF" opacity="0.28"/>
   </g>
-  <text x="80" y="180" fill="#C49A2A" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6">CHAIRMAN - FOUNDER - ANGEL INVESTOR</text>
+  <text x="80" y="180" fill="#C49A2A" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="5">AGENCY EXECUTIVE - NED - ANGEL INVESTOR</text>
   <text x="80" y="290" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="84" font-weight="800" letter-spacing="-3">Oliver Michael</text>
   <text x="80" y="372" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="84" font-weight="800" letter-spacing="-3">Spielmann</text>
   <rect x="80" y="396" width="120" height="3" fill="#C49A2A"/>
-  <text x="80" y="448" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="600" opacity=".88">´Nicht einfacher, sondern besser!ª</text>
-  <text x="80" y="556" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600" opacity=".62" letter-spacing="2">Spielmann Consulting - Black Coffee Group - Board Member</text>
+  <text x="80" y="448" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="600" opacity=".88">ùNicht einfacher, sondern besser!ù</text>
+  <text x="80" y="556" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600" opacity=".62" letter-spacing="2">Spielmann Consulting - RPOS Group - VKUS Tea Master - SBB / Elvetino</text>
 </svg>
