@@ -726,72 +726,71 @@ p {
 }
 
 /* Steam wisps above the cup */
-/* Steam rising above the cup - several wisps that animate upward continuously,
-   visible from the moment the espresso shot is poured (chapter 2). The steam
-   visually drifts toward the BCG logo on the right at chapter 6 (the BCG logo
-   ITSELF is steam wisps + wordmark, so the cup steam morphs into the brand). */
-.brew-build__steam {
-  position: absolute;
-  left: 50%;
-  top: 4%;
-  width: 200px;
-  height: 200px;
-  margin-left: -100px;
-  pointer-events: none;
-  opacity: calc(var(--p-shot, 0) * 0.95);
+/* Steam-to-BCG-logo morph - the visual centrepiece of chapter 6.
+   The two wisps are SVG paths copied verbatim from the official BCG icon,
+   placed inside the cup-svg above the foam dome. The same wisp shape plays
+   two roles in the timeline:
+
+     1) Steam (visible from chapter 2): the "brew-steam" group, white,
+        blurred, gently swaying, growing more solid as the cup brews.
+     2) Logo mark (visible from chapter 6): the "brew-logo" group, solid
+        black, sharp, with the BCG wordmark fading in to the right.
+
+   The hand-off happens around chapter 6: the steam fades out as the logo
+   fades in. Because both occupy the same x-region, the eye reads the
+   shape "crystalising" from steam into the brand. */
+
+.brew-steam {
+  /* Visible from chapter 2 onward, peaks before chapter 6, then dissolves
+     as the logo state takes over. Computed from --p-shot (steam-on) and
+     --p-bag (logo-on) so the two states cross-fade. */
+  opacity: calc(var(--p-shot, 0) * 0.85 * (1 - var(--p-bag, 0)));
   transition: opacity 360ms ease;
-  z-index: 3;
+  pointer-events: none;
 }
 
-.brew-build__steam span {
-  position: absolute;
-  display: block;
-  width: 18px;
-  height: 28px;
-  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
-  filter: blur(4px);
-  animation: brew-steam 5.2s ease-in-out infinite;
-  transform-origin: 50% 100%;
+.brew-steam__wisp {
+  /* Base fill is a soft warm-grey so the wisps read against the cream
+     background (pure white would disappear). It darkens slightly through
+     the breathe animation, foreshadowing the chapter-6 morph to black. */
+  fill: rgba(80, 70, 80, 0.55);
+  filter: blur(2.8px) drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  animation: brew-steam-breathe 4.8s ease-in-out infinite alternate;
 }
 
-.brew-build__steam span:nth-child(1) {
-  bottom: 4px;
-  left: 28%;
-  width: 22px;
-  height: 32px;
-  animation-delay: 0s;
+@keyframes brew-steam-breathe {
+  0% {
+    opacity: 0.45;
+    filter: blur(3.6px) drop-shadow(0 0 4px rgba(255, 255, 255, 0.35));
+  }
+  50% {
+    opacity: 1;
+    filter: blur(2.2px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+  }
+  100% {
+    opacity: 0.65;
+    filter: blur(3px) drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+  }
 }
 
-.brew-build__steam span:nth-child(2) {
-  bottom: 14px;
-  left: 50%;
-  width: 28px;
-  height: 40px;
-  animation-delay: 0.7s;
+/* Logo state - same BCG wisps but solid black + wordmark. Drives the
+   chapter-6 "from steam to brand" reveal. */
+.brew-logo {
+  /* opacity already comes from the .brew-layer--bag rule */
+  pointer-events: none;
 }
 
-.brew-build__steam span:nth-child(3) {
-  bottom: 4px;
-  left: 70%;
-  width: 22px;
-  height: 32px;
-  animation-delay: 1.4s;
+.brew-logo__icon {
+  fill: #0a0a0a;
 }
 
-.brew-build__steam span:nth-child(4) {
-  bottom: 36px;
-  left: 38%;
-  width: 26px;
-  height: 38px;
-  animation-delay: 2.1s;
-}
-
-@keyframes brew-steam {
-  0%   { transform: translate3d(0, 0, 0) scale(0.6, 0.6); opacity: 0; }
-  15%  { opacity: 0.7; }
-  60%  { opacity: 0.45; }
-  100% { transform: translate3d(0, -120px, 0) scale(1.6, 2.2); opacity: 0; }
+.brew-logo__wordmark {
+  /* The wordmark slides in from the left so it visually emerges from the
+     wisps (which sit just to its left). The base transform is set on the
+     SVG element via the translate attribute; the CSS transform is added
+     via rotate-translate(none) trick so it composes in a single transform. */
+  opacity: var(--p-bag, 0);
+  transition: opacity 480ms ease;
 }
 
 /* The cup ─────────────────────────────────────────────────────────────── */

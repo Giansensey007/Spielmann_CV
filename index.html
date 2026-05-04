@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-de="Zum Hauptinhalt springen" data-en="Skip to main content">Zum Hauptinhalt springen</a>
@@ -101,9 +101,6 @@
       <div class="brew-build__layout section-shell">
         <div class="brew-build__stage" aria-hidden="true">
           <div class="brew-build__counter"></div>
-          <div class="brew-build__steam" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
 
           <div class="brew-build__cup" data-cup>
             <svg class="cup-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
@@ -401,41 +398,58 @@
                 </g>
               </g>
 
-              <!-- 5. BCG logo - the cup's own steam drifts up and morphs into the
-                   official Black Coffee Group logo (steam wisps + BCG wordmark).
-                   The two steam wisps are taken directly from the official BCG icon
-                   SVG. The logo lives at the upper-right of the cup, where the cup's
-                   visual steam appears to drift toward, completing the storytelling
-                   "from steam to brand" choreography of chapter 6. -->
-              <g class="brew-layer brew-layer--bag" transform="translate(248 12)">
-                <!-- Two steam wisps from the official BCG icon, scaled to fit. -->
-                <g transform="translate(0 0) scale(0.24)" fill="rgba(54, 28, 8, 0.92)">
+              <!-- 5. BCG steam-to-logo morph - one of the most important moments of
+                   the choreography. Two wisp shapes (taken VERBATIM from the official
+                   BCG icon SVG, viewBox 0 0 178.33 256.59) live directly above the
+                   foam dome. The same shape serves two roles:
+
+                     a) STEAM (visible from chapter 2 onward, --p-shot):
+                        soft white wisps, blurred, low opacity, animating a gentle
+                        sway. This reads as ordinary coffee steam.
+
+                     b) LOGO MARK (visible from chapter 6 onward, --p-bag):
+                        the same wisps but solid black, sharp, no animation. The
+                        wordmark "BCG" + tagline fades in to the right.
+
+                   Both layers live in the same place so the eye reads the
+                   transition as the steam crystalising into the brand. The whole
+                   block is centred above the cup at x=200, with the wisps starting
+                   roughly at the foam apex (y~78). -->
+
+              <!-- Steam state: soft white wisps, animated, faded by --p-shot,
+                   hidden as soon as --p-bag (chapter 6) takes over. Outer group
+                   handles base position + scale, inner group runs the sway anim. -->
+              <g class="brew-steam" aria-hidden="true">
+                <g transform="translate(170 -2) scale(0.32)" class="brew-steam__wisp">
+                  <path d="M161.62,102.44c.34-1.64-1.32-2.98-2.84-2.28-12.33,5.62-20.47,12.64-25.17,17.37-5.29,5.31-10.32,10.49-13.34,19.19-.91,2.64-3.92,12.17-1.28,23.55,1.08,4.65,2.2,5.74,5.8,13.92,1,2.26,5.79,13.29,8.93,24.36,1.07,3.78,4.15,15.33,4.76,30.75.26,6.58.11,14.9-1.23,24.43-.23,1.67,1.54,2.9,3.01,2.08,6.57-3.66,11.51-7.51,14.94-10.5,4.75-4.15,12.14-10.73,17.64-21.7,2.52-5.03,5.08-10.14,5.45-17.4.44-8.67-2.46-15.85-4.41-20.65-1.46-3.61-1.58-2.98-5.22-10.44-4.14-8.49-6.6-13.53-8.35-19.72-1.91-6.73-2.18-11.96-2.44-17.06-.61-11.92,1.1-21.49,2.67-30.28.37-2.09.75-3.98,1.09-5.61Z"/>
+                  <path d="M71.81,4.06c.56-2.69-2.17-4.89-4.67-3.75-20.27,9.24-33.64,20.78-41.37,28.55-8.69,8.73-16.97,17.24-21.92,31.54-1.5,4.34-6.44,20.01-2.1,38.72,1.77,7.64,3.62,9.43,9.54,22.89,1.64,3.72,9.52,21.84,14.69,40.05,1.76,6.21,6.82,25.2,7.82,50.54.43,10.82.18,24.49-2.03,40.16-.39,2.74,2.53,4.77,4.94,3.42,10.79-6.02,18.92-12.34,24.55-17.26,7.8-6.82,19.96-17.65,28.99-35.66,4.14-8.27,8.35-16.67,8.96-28.61.73-14.24-4.05-26.05-7.25-33.95-2.4-5.94-2.6-4.89-8.58-17.16-6.81-13.95-10.85-22.24-13.73-32.42-3.13-11.06-3.58-19.66-4-28.04-1-19.6,1.8-35.32,4.39-49.78.61-3.43,1.23-6.54,1.79-9.23Z"/>
+                </g>
+              </g>
+
+              <!-- Logo mark state: same wisps, sharp solid black, AND wordmark.
+                   Fades in only at chapter 6 via --p-bag. -->
+              <g class="brew-layer brew-layer--bag brew-logo">
+                <!-- The wisps as logo mark - solid black, no blur, no animation.
+                     Same scale as steam state so the visual hand-off is seamless;
+                     shifted slightly left to make room for the BCG wordmark. -->
+                <g class="brew-logo__icon" transform="translate(128 -2) scale(0.32)">
                   <path d="M161.62,102.44c.34-1.64-1.32-2.98-2.84-2.28-12.33,5.62-20.47,12.64-25.17,17.37-5.29,5.31-10.32,10.49-13.34,19.19-.91,2.64-3.92,12.17-1.28,23.55,1.08,4.65,2.2,5.74,5.8,13.92,1,2.26,5.79,13.29,8.93,24.36,1.07,3.78,4.15,15.33,4.76,30.75.26,6.58.11,14.9-1.23,24.43-.23,1.67,1.54,2.9,3.01,2.08,6.57-3.66,11.51-7.51,14.94-10.5,4.75-4.15,12.14-10.73,17.64-21.7,2.52-5.03,5.08-10.14,5.45-17.4.44-8.67-2.46-15.85-4.41-20.65-1.46-3.61-1.58-2.98-5.22-10.44-4.14-8.49-6.6-13.53-8.35-19.72-1.91-6.73-2.18-11.96-2.44-17.06-.61-11.92,1.1-21.49,2.67-30.28.37-2.09.75-3.98,1.09-5.61Z"/>
                   <path d="M71.81,4.06c.56-2.69-2.17-4.89-4.67-3.75-20.27,9.24-33.64,20.78-41.37,28.55-8.69,8.73-16.97,17.24-21.92,31.54-1.5,4.34-6.44,20.01-2.1,38.72,1.77,7.64,3.62,9.43,9.54,22.89,1.64,3.72,9.52,21.84,14.69,40.05,1.76,6.21,6.82,25.2,7.82,50.54.43,10.82.18,24.49-2.03,40.16-.39,2.74,2.53,4.77,4.94,3.42,10.79-6.02,18.92-12.34,24.55-17.26,7.8-6.82,19.96-17.65,28.99-35.66,4.14-8.27,8.35-16.67,8.96-28.61.73-14.24-4.05-26.05-7.25-33.95-2.4-5.94-2.6-4.89-8.58-17.16-6.81-13.95-10.85-22.24-13.73-32.42-3.13-11.06-3.58-19.66-4-28.04-1-19.6,1.8-35.32,4.39-49.78.61-3.43,1.23-6.54,1.79-9.23Z"/>
                 </g>
 
-                <!-- BCG wordmark - the central "C" is gold per the official logo,
-                     B and G in dark coffee colour. -->
-                <g transform="translate(50 44)">
+                <!-- BCG wordmark - monochrome black to match the rest of the site.
+                     Vertically centred to the icon (~y=55 baseline puts the cap
+                     height in line with the icon's middle). -->
+                <g class="brew-logo__wordmark" transform="translate(196 56)">
                   <text x="0" y="0"
                         font-family="Open Sans, Helvetica, sans-serif"
-                        font-size="26" font-weight="800"
-                        fill="rgba(54, 28, 8, 0.95)" letter-spacing="2">B</text>
-                  <text x="20" y="0"
+                        font-size="50" font-weight="800"
+                        fill="#0a0a0a" letter-spacing="1">BCG</text>
+                  <text x="2" y="14"
                         font-family="Open Sans, Helvetica, sans-serif"
-                        font-size="26" font-weight="800"
-                        fill="#C49A2A" letter-spacing="2">C</text>
-                  <text x="38" y="0"
-                        font-family="Open Sans, Helvetica, sans-serif"
-                        font-size="26" font-weight="800"
-                        fill="rgba(54, 28, 8, 0.95)" letter-spacing="2">G</text>
+                        font-size="7" font-weight="600"
+                        fill="#0a0a0a" letter-spacing="1.4">BLACK COFFEE GROUP LTD.</text>
                 </g>
-
-                <!-- Tagline beneath BCG wordmark -->
-                <text x="50" y="56"
-                      font-family="Open Sans, Helvetica, sans-serif"
-                      font-size="4" font-weight="700"
-                      fill="rgba(54, 28, 8, 0.65)" letter-spacing="1.4">BLACK COFFEE GROUP LTD.</text>
               </g>
 
               <!-- Gold rim - drawn here AFTER the foam so only the back rim is visible
