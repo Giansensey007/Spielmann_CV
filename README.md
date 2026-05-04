@@ -2,21 +2,34 @@
 
 Static personal website for **Oliver Michael Spielmann** (Chairman, Founder, Angel Investor and Board Member). Built as a single-page profile in the Spielmann Consulting AG corporate design (Navy / Gold / Open Sans), bilingual German + English, deploy-ready for GitHub Pages or Cloudflare Pages.
 
-The signature element is a **scroll-built Swiss train**: as you scroll through the chapters, a seven-wagon train (Pub car, Speisewagen, Strategischer Einkauf, Segafredo, Boutique M&A, Black Coffee Group, Locomotive) assembles wagon by wagon and rolls from the rear to the front of the stage. Each wagon is one chapter of Oliver's career.
+The signature element is a **scroll-brewed espresso cup**: as you scroll through the chapters, a photorealistic SVG cup is brewed layer by layer - empty cup, espresso shot, golden crema, milk foam, SC latte art, three coffee beans + BCG label, and finally a rotated gold "Servito - Excellence Tier" stamp. Each layer is one chapter of Oliver's career, from the first Irish Pub managing director seat to today's Chairman, Co-Founder and Angel Investor positions.
+
+The cup nods to two pillars of his career - eight years of SBB Speisewagen and the coffee story that runs through Segafredo CEO Schweiz, Spielmann Consulting AG, and Black Coffee Group.
 
 ## Files
 
 - `index.html` - all content, fully bilingual via `data-de` / `data-en` attributes
-- `styles.css` - design tokens, layout, train stage and wagons, responsive, `prefers-reduced-motion`
-- `script.js` - scroll-driven train animation, bilingual toggle, counters, reveal observer, sticky header
-- `favicon.svg` - navy + gold train icon
-- `og-image.svg` - LinkedIn-shareable preview
+- `styles.css` - design tokens, layout, cup stage and brew layers, responsive, `prefers-reduced-motion`
+- `script.js` - scroll-driven brew animation, bilingual toggle, counters, reveal observer, sticky header
+- `favicon.svg` - navy + gold cup icon
+- `og-image.svg` - LinkedIn-shareable preview with the cup
 - `site.webmanifest` - PWA metadata
 - `_headers` - Cloudflare Pages security and cache headers
 - `404.html` - branded not-found page
 - `README.md` - this file
 
 No build step. No external runtime dependency apart from Google Fonts (Open Sans).
+
+## Design-review URLs
+
+The brew progress can be forced via a query string for design review and screenshots:
+
+- `/?brew=0` - empty cup (initial state)
+- `/?brew=0.18` - espresso shot pulled
+- `/?brew=0.32` - golden crema visible
+- `/?brew=0.5` - milk foam on top
+- `/?brew=0.7` - SC latte art
+- `/?brew=0.95` - fully brewed with beans + Servito stamp
 
 ## Local preview
 
