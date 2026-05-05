@@ -1555,22 +1555,37 @@ p {
   }
 
   .brew-build__layout {
+    /* Single column on mobile: the cup stage stacks above the chapters
+       list. The stage is sticky so the animation stays visible while the
+       user scrolls through the chapters; the chapter list has its own
+       z-index so cards never overlap the sticky cup. */
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .brew-build__stage {
-    top: 86px;
-    aspect-ratio: 4 / 5;
+    /* Sticky cup stage at the top of the viewport. Capped to roughly
+       half the viewport height so the user can see both the animation
+       (top half) and the chapter being read (bottom half) at the same
+       time. z-index keeps it above the chapter cards as they scroll. */
+    position: sticky;
+    top: 76px;
+    z-index: 3;
+    aspect-ratio: auto;
     min-height: 0;
-    padding: 24px 18px 56px;
+    height: min(48vh, 460px);
+    padding: 16px 14px 24px;
   }
 
   .brew-build__cup {
-    width: min(360px, 78%);
+    width: min(280px, 70%);
   }
 
   .brew-build__chapters {
+    /* Chapters scroll BELOW the sticky stage. The z-index sits below the
+       stage so any tall chapter card never visually covers the cup. */
+    position: relative;
+    z-index: 1;
     padding: 0;
     gap: 14px;
   }
@@ -1579,6 +1594,9 @@ p {
     min-height: auto;
     opacity: 0.7;
     transform: translateY(6px) scale(0.99);
+    /* Solid background so cards are fully opaque against any visual that
+       might bleed through from underneath. */
+    background: var(--white);
   }
 
   .brew-chapter.is-active {
@@ -1708,12 +1726,17 @@ p {
   }
 
   .brew-build__stage {
+    /* Smaller phones: keep the sticky stage shorter so chapter cards
+       have more room. min-height is removed to honour the sticky height
+       cap from the 1024px breakpoint. */
     aspect-ratio: auto;
-    min-height: 420px;
+    min-height: 0;
+    height: min(44vh, 380px);
+    padding: 12px 12px 20px;
   }
 
   .brew-build__cup {
-    width: min(300px, 82%);
+    width: min(240px, 68%);
   }
 
   .quote-card::before {
